@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<script>document.documentElement.classList.add('js');</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Enterprise AI Training for Your Workforce | Great Learning</title>
+<meta name="description" content="Great Learning for Business builds AI training in three layers around your systems and use cases, measured against a baseline and followed up 90 days after the program ends.">
+<meta name="theme-color" content="#196AE5">
+<meta name="robots" content="index, follow">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Enterprise AI Training for Your Workforce | Great Learning">
+<meta property="og:description" content="Built around your systems and use cases, and measured long after the program ends.">
+<meta property="og:site_name" content="Great Learning">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230E39A9'/%3E%3Ctext x='16' y='22' font-family='Arial,sans-serif' font-size='18' font-weight='700' fill='white' text-anchor='middle'%3EG%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<!-- ===================================================================
+     Great Learning global navigation.
+     Rebuilt from the live mygreatlearning.com header. The page-level nav
+     described in the copy spec is deliberately not rendered.
+     =================================================================== -->
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="https://www.mygreatlearning.com/" aria-label="Great Learning home">
+      <img src="assets/gl-logo.svg" alt="Great Learning" width="115" height="36">
+    </a>
+
+    <nav class="nav-desktop" aria-label="Primary">
+      <a class="programs-pill" href="https://www.mygreatlearning.com/">Explore Programs <span class="chev" aria-hidden="true"></span></a>
+      <a class="nav-link" href="https://www.mygreatlearning.com/gl-excelerate">Career Support</a>
+      <a class="nav-link" href="https://www.mygreatlearning.com/alumni">Success Stories</a>
+      <a class="nav-link" href="https://www.mygreatlearning.com/enterprise" aria-current="page">Enterprise</a>
+      <a class="nav-link" href="https://www.mygreatlearning.com/hire-talent">For Recruiters</a>
+      <a class="nav-link" href="https://www.mygreatlearning.com/blog/">More</a>
+    </nav>
+
+    <div class="header-right">
+      <!-- GL's live mobile header carries a Programs pill beside the hamburger -->
+      <a class="programs-pill programs-pill-mobile" href="https://www.mygreatlearning.com/">Programs <span class="chev" aria-hidden="true"></span></a>
+      <a class="login-chip" href="https://www.mygreatlearning.com/">Login</a>
+      <button type="button" class="hamburger" id="navToggle" aria-expanded="false" aria-controls="mobileDrawer" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="drawer-backdrop" id="drawerBackdrop" hidden></div>
+
+<aside class="drawer" id="mobileDrawer" aria-label="Site menu" hidden>
+  <div class="drawer-head">
+    <img src="assets/gl-logo.svg" alt="Great Learning" width="103" height="32">
+    <button type="button" class="drawer-close" id="drawerClose" aria-label="Close menu">&times;</button>
+  </div>
+  <nav aria-label="Mobile">
+    <a href="https://www.mygreatlearning.com/">Explore Programs</a>
+    <a href="https://www.mygreatlearning.com/gl-excelerate">Career Support</a>
+    <a href="https://www.mygreatlearning.com/alumni">Success Stories</a>
+    <a href="https://www.mygreatlearning.com/enterprise" aria-current="page">Enterprise</a>
+    <a href="https://www.mygreatlearning.com/hire-talent">For Recruiters</a>
+    <div class="drawer-sep"></div>
+    <a href="https://www.mygreatlearning.com/webinars">Free Counselling Webinars</a>
+    <a href="https://www.mygreatlearning.com/blog/">Blog</a>
+    <a href="https://www.mygreatlearning.com/academy">Free Online Courses</a>
+    <a href="https://www.mygreatlearning.com/academy/pro/resume-builder">AI Resume Builder</a>
+    <div class="drawer-sep"></div>
+    <a class="drawer-login" href="https://www.mygreatlearning.com/">Login</a>
+  </nav>
+</aside>
+
+<main id="main">
+
+<!-- ================================ 1 · Hero · standard ================== -->
+<section class="s-standard hero">
+  <div class="wrap">
+    <div class="hero-copy reveal">
+      <p class="kicker">Great Learning for Business</p>
+      <h1 class="t-display">Practical AI training your organization will actually adopt</h1>
+      <p class="t-lead">Built around your systems and use cases, and measured long after the program ends.</p>
+      <!-- Retired for the one-subtext rule. Approved source copy, restore if wanted:
+           "Most companies have already bought AI training once. Licenses went out,
+           completion rates came back, and nobody could say what changed." -->
+      <div class="hero-actions">
+        <a class="btn btn-lg btn-primary" href="#get-started">Request A Consultation</a>
+        <a class="btn btn-lg btn-outline" href="#how-we-measure">See The Outcomes</a>
+      </div>
+    </div>
+
+    <!-- Hero layer switcher.
+         Techniques mirrored from the reference implementation: panels stacked in
+         one grid cell and crossfaded so the stage never changes height, inert on
+         the inactive ones, a wide background track that slides sideways rather
+         than swapping, and a gooey SVG filter that merges the active tab into
+         the panel below it. All shapes, icons and patterns here are original.
+         All three layer photographs are in place. -->
+    <div class="switcher reveal" id="layerSwitch" data-active="1">
+      <div class="switch-bg" aria-hidden="true">
+        <div class="switch-track">
+          <span class="zone zone-1"></span>
+          <span class="zone zone-2"></span>
+          <span class="zone zone-3"></span>
+        </div>
+      </div>
+
+      <div class="switch-tabs-wrap">
+        <div class="switch-tabs" role="tablist" aria-label="The three layers">
+          <button type="button" role="tab" id="lt1" class="switch-tab" data-layer="1" aria-controls="lp1" aria-selected="true" aria-label="Layer 1, Fluency">
+            <span class="tab-goo" aria-hidden="true"><span class="goo-blob"></span><span class="goo-tail"></span></span>
+            <svg class="tab-progress" aria-hidden="true" preserveAspectRatio="none"><path pathLength="100" vector-effect="non-scaling-stroke"/></svg>
+            <span class="switch-ico" aria-hidden="true"><i class="ico ico-fluency"></i></span>
+            <span class="switch-tab-txt"><b>Layer 1</b><i>Fluency</i></span>
+          </button>
+          <button type="button" role="tab" id="lt2" class="switch-tab" data-layer="2" aria-controls="lp2" aria-selected="false" tabindex="-1" aria-label="Layer 2, Technology">
+            <span class="tab-goo" aria-hidden="true"><span class="goo-blob"></span><span class="goo-tail"></span></span>
+            <svg class="tab-progress" aria-hidden="true" preserveAspectRatio="none"><path pathLength="100" vector-effect="non-scaling-stroke"/></svg>
+            <span class="switch-ico" aria-hidden="true"><i class="ico ico-technology"></i></span>
+            <span class="switch-tab-txt"><b>Layer 2</b><i>Technology</i></span>
+          </button>
+          <button type="button" role="tab" id="lt3" class="switch-tab" data-layer="3" aria-controls="lp3" aria-selected="false" tabindex="-1" aria-label="Layer 3, Leadership">
+            <span class="tab-goo" aria-hidden="true"><span class="goo-blob"></span><span class="goo-tail"></span></span>
+            <svg class="tab-progress" aria-hidden="true" preserveAspectRatio="none"><path pathLength="100" vector-effect="non-scaling-stroke"/></svg>
+            <span class="switch-ico" aria-hidden="true"><i class="ico ico-leadership"></i></span>
+            <span class="switch-tab-txt"><b>Layer 3</b><i>Leadership</i></span>
+          </button>
+        </div>
+      </div>
+
+      <div class="switch-card">
+        <div class="switch-stage">
+          <div role="tabpanel" id="lp1" class="switch-panel" data-layer="1" aria-labelledby="lt1">
+            <div class="switch-copy">
+              <div class="switch-name">
+                <span class="name-dot" aria-hidden="true"><i class="ico ico-fluency"></i></span>
+                <span class="name-text">
+                  <span class="name-kicker">Layer 1</span>
+                  <span class="name-title">Fluency</span>
+                </span>
+              </div>
+              <p class="switch-promise">Practical fluency that shows up in daily work</p>
+              <p class="switch-aud">For Sales, marketing, HR, legal, and operations</p>
+              <a class="switch-link" href="#programs">Explore This Layer <span class="arr" aria-hidden="true">&rarr;</span></a>
+            </div>
+            <div class="switch-media">
+              <img src="assets/layer1.jpg" alt="Four colleagues around a table with laptops open, one gesturing mid-discussion" width="1200" height="896" loading="eager" fetchpriority="high" decoding="async">
+            </div>
+          </div>
+          <div role="tabpanel" id="lp2" class="switch-panel" data-layer="2" aria-labelledby="lt2" inert>
+            <div class="switch-copy">
+              <div class="switch-name">
+                <span class="name-dot" aria-hidden="true"><i class="ico ico-technology"></i></span>
+                <span class="name-text">
+                  <span class="name-kicker">Layer 2</span>
+                  <span class="name-title">Technology</span>
+                </span>
+              </div>
+              <p class="switch-promise">Build and ship AI systems that reach production</p>
+              <p class="switch-aud">For IT, software development, data engineering, and cybersecurity</p>
+              <a class="switch-link" href="#programs">Explore This Layer <span class="arr" aria-hidden="true">&rarr;</span></a>
+            </div>
+            <div class="switch-media">
+              <img src="assets/layer2.jpg" alt="Two engineers at a desk with monitors, one gesturing toward a screen while the other types" width="1200" height="896" loading="lazy" decoding="async">
+            </div>
+          </div>
+          <div role="tabpanel" id="lp3" class="switch-panel" data-layer="3" aria-labelledby="lt3" inert>
+            <div class="switch-copy">
+              <div class="switch-name">
+                <span class="name-dot" aria-hidden="true"><i class="ico ico-leadership"></i></span>
+                <span class="name-text">
+                  <span class="name-kicker">Layer 3</span>
+                  <span class="name-title">Leadership</span>
+                </span>
+              </div>
+              <p class="switch-promise">Decide what to fund and prove the return</p>
+              <p class="switch-aud">For C-suite, VPs, and senior sponsors</p>
+              <a class="switch-link" href="#programs">Explore This Layer <span class="arr" aria-hidden="true">&rarr;</span></a>
+            </div>
+            <div class="switch-media">
+              <img src="assets/layer3.jpg" alt="A colleague presenting a chart on a wall display to two seated colleagues taking notes" width="1200" height="896" loading="lazy" decoding="async">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Gooey filter. Blur, then push alpha hard so nearby shapes merge into
+         one silhouette. Generic SVG technique, original shapes. -->
+    <svg class="goo-def" aria-hidden="true" focusable="false"><defs>
+      <filter id="glGoo" x="-30%" y="-30%" width="160%" height="200%">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="b"/>
+        <feColorMatrix in="b" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -9"/>
+      </filter>
+    </defs></svg>
+  </div>
+</section>
+
+<!-- ================================ 2 · Credibility · band ==============
+     Three panels rather than three stacked blocks. The claim and the marquee
+     that evidences it share the top panel; underneath, the curriculum partners
+     and the scale numbers sit side by side, each in its own panel. The marquee
+     holds two identical sets so a -50% translate loops seamlessly; the second
+     set is aria-hidden so names are not announced twice.
+     ==================================================================== -->
+<section class="s-band">
+  <div class="wrap band-grid">
+
+    <div class="band-panel band-lead">
+      <h2 class="band-title">Trusted by 350+ enterprises</h2>
+
+      <!-- The enterprises, directly under the claim that counts them, so no
+           label is needed: the heading above already says what these are. Both
+           sets hold the same 22 logos in the same order, which is what makes
+           the loop seamless: the track translates by exactly half its width. -->
+    <div class="logo-marquee band-marquee">
+        <div class="logo-track">
+            <ul class="logo-set">
+              <li><img width="188" height="79" src="assets/logos/amazon.png" alt="Amazon" decoding="async"></li>
+              <li><img width="125" height="53" src="assets/logos/tesco.png" alt="Tesco" decoding="async"></li>
+              <li><img width="125" height="53" src="assets/logos/eif.png" alt="EIF" decoding="async"></li>
+              <li><img width="125" height="53" src="assets/logos/pwc.png" alt="PwC" decoding="async"></li>
+              <li><img width="125" height="53" src="assets/logos/kotak.png" alt="Kotak" decoding="async"></li>
+              <li><img width="125" height="53" src="assets/logos/rbi.png" alt="Reserve Bank of India" decoding="async"></li>
+              <li><img width="188" height="79" src="assets/logos/deloitte.png" alt="Deloitte" decoding="async"></li>
+              <li><img width="125" height="53" src="assets/logos/sony.png" alt="Sony" decoding="async"></li>
+              <li><img width="125" height="53" src="assets/logos/ebay.png" alt="eBay" decoding="async"></li>
+              <li><img width="125" height="53" src="assets/logos/bankOfAmerica.png" alt="Bank of America" decoding="async"></li>
+              <li><img width="125" height="53" src="assets/logos/hcl.png" alt="HCLTech" decoding="async"></li>
+              <li><img width="125" height="53" src="assets/logos/lt.png" alt="L&amp;T" decoding="async"></li>
+              <li><img width="125" height="53" src="assets/logos/hsbc.png" alt="HSBC" decoding="async"></li>
+              <li><img width="125" height="53" src="assets/logos/nokia.png" alt="Nokia" decoding="async"></li>
+              <li><img width="125" height="53" src="assets/logos/icici.png" alt="ICICI" decoding="async"></li>
+              <li><img width="125" height="53" src="assets/logos/saleforce.png" alt="Salesforce" decoding="async"></li>
+              <li><img width="125" height="53" src="assets/logos/wipro.png" alt="Wipro" decoding="async"></li>
+              <li><img width="125" height="53" src="assets/logos/visa.png" alt="Visa" decoding="async"></li>
+              <li><img width="125" height="53" src="assets/logos/ltiMindTree.png" alt="LTIMindtree" decoding="async"></li>
+              <li><img width="125" height="53" src="assets/logos/socalCen.png" alt="Société Générale" decoding="async"></li>
+              <li><img width="125" height="53" src="assets/logos/northernTrust.png" alt="Northern Trust" decoding="async"></li>
+              <li><img width="188" height="80" src="assets/logos/adobe.png" alt="Adobe" decoding="async"></li>
+            </ul>
+            <ul class="logo-set" aria-hidden="true">
+              <li><img width="188" height="79" src="assets/logos/amazon.png" alt="" decoding="async"></li>
+              <li><img width="125" height="53" src="assets/logos/tesco.png" alt="" decoding="async"></li>
+              <li><img width="125" height="53" src="assets/logos/eif.png" alt="" decoding="async"></li>
+              <li><img width="125" height="53" src="assets/logos/pwc.png" alt="" decoding="async"></li>
+              <li><img width="125" height="53" src="assets/logos/kotak.png" alt="" decoding="async"></li>
+              <li><img width="125" height="53" src="assets/logos/rbi.png" alt="" decoding="async"></li>
+              <li><img width="188" height="79" src="assets/logos/deloitte.png" alt="" decoding="async"></li>
+              <li><img width="125" height="53" src="assets/logos/sony.png" alt="" decoding="async"></li>
+              <li><img width="125" height="53" src="assets/logos/ebay.png" alt="" decoding="async"></li>
+              <li><img width="125" height="53" src="assets/logos/bankOfAmerica.png" alt="" decoding="async"></li>
+              <li><img width="125" height="53" src="assets/logos/hcl.png" alt="" decoding="async"></li>
+              <li><img width="125" height="53" src="assets/logos/lt.png" alt="" decoding="async"></li>
+              <li><img width="125" height="53" src="assets/logos/hsbc.png" alt="" decoding="async"></li>
+              <li><img width="125" height="53" src="assets/logos/nokia.png" alt="" decoding="async"></li>
+              <li><img width="125" height="53" src="assets/logos/icici.png" alt="" decoding="async"></li>
+              <li><img width="125" height="53" src="assets/logos/saleforce.png" alt="" decoding="async"></li>
+              <li><img width="125" height="53" src="assets/logos/wipro.png" alt="" decoding="async"></li>
+              <li><img width="125" height="53" src="assets/logos/visa.png" alt="" decoding="async"></li>
+              <li><img width="125" height="53" src="assets/logos/ltiMindTree.png" alt="" decoding="async"></li>
+              <li><img width="125" height="53" src="assets/logos/socalCen.png" alt="" decoding="async"></li>
+              <li><img width="125" height="53" src="assets/logos/northernTrust.png" alt="" decoding="async"></li>
+              <li><img width="188" height="80" src="assets/logos/adobe.png" alt="" decoding="async"></li>
+            </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Six universities, looping. At half width a static row of six leaves
+         each slot around 77px, which renders the widest lockup under ten
+         pixels tall, and a second row is what made this panel tall in the
+         first place. One moving row buys back the height. Both sets hold the
+         same six in the same order so the track loops on a half translate;
+         the second set is aria-hidden so names are not announced twice. -->
+    <div class="band-panel band-unis">
+      <p class="logo-label">Curriculum partners</p>
+      <div class="logo-marquee uni-marquee">
+        <div class="logo-track">
+          <ul class="logo-set" role="list">
+            <li><img width="651" height="85" src="assets/gl-partners.png" alt="UT Austin McCombs School of Business" decoding="async"></li>
+            <li><img width="554" height="159" src="assets/mit_pe.png" alt="MIT Professional Education" decoding="async"></li>
+            <li><img width="525" height="165" src="assets/jhu.png" alt="Johns Hopkins University" decoding="async"></li>
+            <li><img width="285" height="142" src="assets/chicago-booth.png" alt="Chicago Booth" decoding="async"></li>
+            <li><img width="147" height="147" src="assets/duke-fuqua.png" alt="Duke Fuqua" decoding="async"></li>
+            <li><img width="400" height="210" src="assets/uni-northwestern.png" alt="Northwestern" decoding="async"></li>
+          </ul>
+          <ul class="logo-set" role="list" aria-hidden="true">
+            <li><img width="651" height="85" src="assets/gl-partners.png" alt="" decoding="async"></li>
+            <li><img width="554" height="159" src="assets/mit_pe.png" alt="" decoding="async"></li>
+            <li><img width="525" height="165" src="assets/jhu.png" alt="" decoding="async"></li>
+            <li><img width="285" height="142" src="assets/chicago-booth.png" alt="" decoding="async"></li>
+            <li><img width="147" height="147" src="assets/duke-fuqua.png" alt="" decoding="async"></li>
+            <li><img width="400" height="210" src="assets/uni-northwestern.png" alt="" decoding="async"></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="band-panel band-figures">
+      <ul class="band-stats" role="list">
+        <li><b>12M+</b><span>Learners</span></li>
+        <li><b>170+</b><span>Countries</span></li>
+        <li><b>7,000+</b><span>Industry Experts</span></li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================================ 3 · Three layers · full spread ====== -->
+<section class="s-full" id="programs">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="kicker">The Model</p>
+      <h2 class="t-h2-full">One workforce, three different problems</h2>
+      <p class="t-lead">A finance manager, a data engineer, and a CFO all need AI. They do not need the same training.</p>
+      <a class="btn btn-lg btn-primary section-cta" href="#get-started">Request A Consultation</a>
+      <!-- Retired for the one-subtext rule. Approved source copy, restore if wanted:
+           "Most programs treat them as one audience. We build in three layers, each
+           with its own curriculum, format, and success measures." -->
+    </div>
+
+    <!-- Expanding card deck. The resting card shows its title and opening line;
+         the active card widens and reveals the full copy and covered topics.
+         Width animates rather than height, so the row height never jumps.
+         Each layer carries its own colour wash that fades in when active. -->
+    <div class="deck reveal">
+      <article class="deck-card" data-layer="1" data-state="active">
+        <span class="deck-wash" aria-hidden="true"></span>
+        <button type="button" class="deck-trigger" id="dt1" aria-expanded="true" aria-controls="dp1">
+          <span class="deck-head"><span class="deck-ico" aria-hidden="true"><i class="ico ico-fluency"></i></span><span class="deck-title">Fluency</span></span>
+          <span class="deck-lead-wrap"><span class="deck-lead">Practical fluency that shows up in daily work</span></span>
+        </button>
+        <div class="deck-body" id="dp1" role="region" aria-labelledby="dt1">
+          <p class="deck-copy">This layer gives every employee working AI literacy: how models and tokens work, how to write effective prompts, and how to use AI ethically in their own jobs.</p>
+          <p class="covers-label">What it covers</p>
+          <ul class="chip-list">
+              <li class="chip">Prompt engineering</li>
+              <li class="chip">Working with models</li>
+              <li class="chip">Responsible AI use</li>
+              <li class="chip">AI agents for everyday processes</li>
+          </ul>
+        </div>
+      </article>
+      <div class="deck-joint" aria-hidden="true"><span class="joint-piece"></span></div>
+      <article class="deck-card" data-layer="2" data-state="resting">
+        <span class="deck-wash" aria-hidden="true"></span>
+        <button type="button" class="deck-trigger" id="dt2" aria-expanded="false" aria-controls="dp2">
+          <span class="deck-head"><span class="deck-ico" aria-hidden="true"><i class="ico ico-technology"></i></span><span class="deck-title">Technology Teams</span></span>
+          <span class="deck-lead-wrap"><span class="deck-lead">Build and ship AI systems that reach production</span></span>
+        </button>
+        <div class="deck-body" id="dp2" role="region" aria-labelledby="dt2">
+          <p class="deck-copy">This layer covers the software, data, and security skills engineering teams need to take AI into production and keep it running reliably, with governance built into the work.</p>
+          <p class="covers-label">What it covers</p>
+          <ul class="chip-list">
+              <li class="chip">Applied software development</li>
+              <li class="chip">Data engineering</li>
+              <li class="chip">Cybersecurity</li>
+              <li class="chip">Prototype to production</li>
+              <li class="chip">Governance and compliance</li>
+          </ul>
+        </div>
+      </article>
+      <div class="deck-joint" aria-hidden="true"><span class="joint-piece"></span></div>
+      <article class="deck-card" data-layer="3" data-state="resting">
+        <span class="deck-wash" aria-hidden="true"></span>
+        <button type="button" class="deck-trigger" id="dt3" aria-expanded="false" aria-controls="dp3">
+          <span class="deck-head"><span class="deck-ico" aria-hidden="true"><i class="ico ico-leadership"></i></span><span class="deck-title">Leaders</span></span>
+          <span class="deck-lead-wrap"><span class="deck-lead">Decide what to fund and prove the return</span></span>
+        </button>
+        <div class="deck-body" id="dp3" role="region" aria-labelledby="dt3">
+          <p class="deck-copy">This layer helps executives move from experimenting with AI to executing on it. Sessions are immersive and discussion led, and cover how to pick use cases, sponsor projects, and measure ROI.</p>
+          <p class="covers-label">What it covers</p>
+          <ul class="chip-list">
+              <li class="chip">Use-case prioritization</li>
+              <li class="chip">Build versus buy</li>
+              <li class="chip">ROI and business case</li>
+              <li class="chip">Scalable operating models</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+
+    <div class="sub-block reveal">
+      <h3 class="t-h2-sm">Every layer starts with your business</h3>
+      <div class="pillars">
+        <div class="pillar">
+          <h4>Your priorities</h4>
+          <p class="t-sm">We scope curriculum to what leadership is targeting and the systems your teams already use.</p>
+        </div>
+        <div class="pillar">
+          <h4>Your use cases</h4>
+          <p class="t-sm">Projects come from your industry. A data engineer's case study looks nothing like a finance manager's.</p>
+        </div>
+        <div class="pillar">
+          <h4>Your sandbox</h4>
+          <p class="t-sm">Teams practice in an environment built around your workflows, so new skills never touch live systems first.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================ 4 · Commitments · standard ==========
+     A feature accordion: one commitment open at a time beside a panel that
+     illustrates it. The rail under each heading doubles as the auto-advance
+     progress indicator, the same mechanic the hero tabs use. -->
+<section class="s-standard" id="commitments">
+  <div class="wrap">
+    <div class="features reveal" id="features" data-active="1">
+
+      <div class="feat-media" aria-hidden="true">
+        <span class="feat-wash"></span>
+
+        <!-- Each scene fills the panel and is cropped by object-fit. alt is empty
+             and the panel is aria-hidden, because the heading and body beside it
+             already carry the meaning and all three images are always in the DOM. -->
+        <div class="feat-scene" data-scene="1">
+          <img src="assets/feat-scene-1.jpg" alt="" width="1200" height="1000" loading="lazy" decoding="async">
+        </div>
+        <div class="feat-scene" data-scene="2">
+          <img src="assets/feat-scene-2.jpg" alt="" width="1200" height="1000" loading="lazy" decoding="async">
+        </div>
+        <div class="feat-scene" data-scene="3">
+          <img src="assets/feat-scene-3.jpg" alt="" width="1200" height="1000" loading="lazy" decoding="async">
+        </div>
+      </div>
+
+      <div class="section-head section-head--left feat-head">
+        <p class="kicker">Our Commitments</p>
+        <h2 class="t-h2">Three things hold across every program</h2>
+        <!-- NEWLY AUTHORED, not in the source copy spec. Needs content approval. -->
+        <p class="t-lead">Whatever the layer, format, or cohort.</p>
+      </div>
+
+      <div class="feat-list">
+        <div class="feat-item" data-state="active">
+          <h3 class="feat-h">
+            <button type="button" class="feat-trigger" id="ft1" aria-expanded="true" aria-controls="fp1">
+              <span class="feat-ico" aria-hidden="true"><i class="ico ico-building"></i></span>
+              <span class="feat-title">Learn by building</span>
+            </button>
+          </h3>
+          <div class="feat-panel" id="fp1" role="region" aria-labelledby="ft1">
+            <div class="feat-panel-in">
+              <p class="t-body">Participants leave with working prototypes and models they built in guided projects.</p>
+            </div>
+          </div>
+          <span class="feat-rail" aria-hidden="true"><span class="feat-fill"></span></span>
+        </div>
+
+        <div class="feat-item" data-state="resting">
+          <h3 class="feat-h">
+            <button type="button" class="feat-trigger" id="ft2" aria-expanded="false" aria-controls="fp2">
+              <span class="feat-ico" aria-hidden="true"><i class="ico ico-together"></i></span>
+              <span class="feat-title">Nobody learns alone</span>
+            </button>
+          </h3>
+          <div class="feat-panel" id="fp2" role="region" aria-labelledby="ft2">
+            <div class="feat-panel-in">
+              <p class="t-body">Every cohort gets a dedicated program manager and access to 7,000+ industry mentors.</p>
+            </div>
+          </div>
+          <span class="feat-rail" aria-hidden="true"><span class="feat-fill"></span></span>
+        </div>
+
+        <div class="feat-item" data-state="resting">
+          <h3 class="feat-h">
+            <button type="button" class="feat-trigger" id="ft3" aria-expanded="false" aria-controls="fp3">
+              <span class="feat-ico" aria-hidden="true"><i class="ico ico-measuring"></i></span>
+              <span class="feat-title">Capability gets measured</span>
+            </button>
+          </h3>
+          <div class="feat-panel" id="fp3" role="region" aria-labelledby="ft3">
+            <div class="feat-panel-in">
+              <p class="t-body">We assess where each person starts, track them throughout, and measure against that same baseline at the end.</p>
+            </div>
+          </div>
+          <span class="feat-rail" aria-hidden="true"><span class="feat-fill"></span></span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================================ 5 · How we measure · full spread ====
+     The one dark section in the body. It reuses the ink tokens the closing CTA
+     already uses, so the page has one dark language rather than two, and it
+     gives the measurement argument a weight the surrounding white sections
+     cannot. The five stages are a schedule, so they are set as one, with the
+     column labels carrying what each field means. -->
+<section class="s-ink" id="how-we-measure">
+  <div class="wrap oc-grid">
+
+    <div class="oc-head reveal">
+      <p class="kicker">Outcomes</p>
+      <h2 class="t-h2-full">How you will know it worked</h2>
+      <p class="t-lead">Every program is measured against one question: did capability change?</p>
+
+      <!-- Not stages. Two commitments that hold across the whole schedule, so
+           they sit beside it rather than inside it. -->
+      <div class="oc-notes">
+        <div class="oc-note">
+          <p class="oc-note-label">Throughout</p>
+          <p class="oc-note-body">One named contact at your organization receives regular reporting on attendance, scores, and feedback.</p>
+        </div>
+        <div class="oc-note">
+          <p class="oc-note-label">At close</p>
+          <p class="oc-note-body">Participants present an executive-ready prototype built for their own job.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="oc-table reveal">
+      <!-- Column labels, not content. They only describe the desktop grid, so
+           they are hidden from assistive tech and from the stacked layout where
+           there are no columns to label. -->
+      <div class="oc-thead" aria-hidden="true">
+        <span>Stage</span>
+        <span>When</span>
+        <span>What happens</span>
+      </div>
+      <ol class="oc-rows" role="list">
+          <li class="oc-row">
+            <span class="oc-stage" aria-hidden="true">01</span>
+            <span class="oc-when">Before we start</span>
+            <p class="oc-what">Everyone takes a structured assessment. It shows where the group stands and identifies the people who are already ahead.</p>
+          </li>
+          <li class="oc-row">
+            <span class="oc-stage" aria-hidden="true">02</span>
+            <span class="oc-when">While it runs</span>
+            <p class="oc-what">Hands-on projects double as ongoing assessment, so gaps show up early enough to act on.</p>
+          </li>
+          <li class="oc-row">
+            <span class="oc-stage" aria-hidden="true">03</span>
+            <span class="oc-when">On real data</span>
+            <p class="oc-what">Projects use real data from real work scenarios, because conceptual learning on its own does not carry over to the job.</p>
+          </li>
+          <li class="oc-row">
+            <span class="oc-stage" aria-hidden="true">04</span>
+            <span class="oc-when">At the end</span>
+            <p class="oc-what">A second assessment, built to compare directly with the first, shows exactly what moved.</p>
+          </li>
+          <li class="oc-row">
+            <span class="oc-stage" aria-hidden="true">05</span>
+            <span class="oc-when">60 and 90 days later</span>
+            <p class="oc-what">We ask participants and their managers whether the training is being used on the job, which is the most honest measure of ROI.</p>
+          </li>
+      </ol>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================================ 6 · Proof · light ===================
+     PLACEHOLDER CONTENT, NOT REAL CUSTOMERS.
+
+     Every quote, person, job title and company on this section is invented, at
+     the page owner's request, so the layout can be judged with realistic copy
+     in it. The companies are fictional and the marks beside them are original
+     drawings, precisely so that no real organisation appears to have endorsed
+     anything. Do not publish this section as is.
+
+     Replace with: one named client with a number, or a minimum of three Tier 3
+     anonymised case studies, per the copy spec.
+     Owner: UX Design / Enterprise Sales.
+     ==================================================================== -->
+<section class="s-light">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="kicker">Partner Outcomes</p>
+      <h2 class="t-h2">What changed for our partners</h2>
+      <!-- NEWLY AUTHORED, not in the source copy spec. Needs content approval. -->
+      <p class="t-lead">Sponsors and participants on what held after the program ended.</p>
+    </div>
+
+    <div class="proof-picker reveal" id="proofPicker">
+      <!-- Panels share one grid cell and crossfade, so switching partners never
+           changes the height of the section. inert keeps the hidden ones out of
+           the tab order and the accessibility tree while they stay in flow. -->
+      <div class="proof-stage">
+        <div role="tabpanel" id="pp1" class="proof-panel" aria-labelledby="pt1">
+          <blockquote class="proof-quote">&ldquo;Six months on, our planners still open the tools we trained them on. That has never happened with training we have bought before.&rdquo;</blockquote>
+          <p class="proof-cite">&mdash; Alicia Moreau, VP People Development, Northwind Logistics</p>
+        </div>
+        <div role="tabpanel" id="pp2" class="proof-panel" aria-labelledby="pt2" inert>
+          <blockquote class="proof-quote">&ldquo;The baseline assessment was uncomfortable reading, and it was the most useful thing we did. We finally knew who needed what.&rdquo;</blockquote>
+          <p class="proof-cite">&mdash; Daniel Okafor, Chief Data Officer, Kestrel Financial</p>
+        </div>
+        <div role="tabpanel" id="pp3" class="proof-panel" aria-labelledby="pt3" inert>
+          <blockquote class="proof-quote">&ldquo;Our clinicians built on our own case data, not a sample set, so the work they produced went straight into review rather than a folder.&rdquo;</blockquote>
+          <p class="proof-cite">&mdash; Priya Raghavan, Director of Clinical Informatics, Meridian Health</p>
+        </div>
+        <div role="tabpanel" id="pp4" class="proof-panel" aria-labelledby="pt4" inert>
+          <blockquote class="proof-quote">&ldquo;I could show the board a number before and a number after. That is what got the second cohort funded.&rdquo;</blockquote>
+          <p class="proof-cite">&mdash; Marcus Whitfield, SVP Operations, Lumen Manufacturing</p>
+        </div>
+        <div role="tabpanel" id="pp5" class="proof-panel" aria-labelledby="pt5" inert>
+          <blockquote class="proof-quote">&ldquo;The 90 day follow up is the part I did not expect. It kept the managers involved long after the sessions ended.&rdquo;</blockquote>
+          <p class="proof-cite">&mdash; Sofia Delgado, Head of Learning, Vantage Retail</p>
+        </div>
+      </div>
+
+      <div class="proof-tiles" role="tablist" aria-label="Partner outcomes">
+          <button type="button" role="tab" id="pt1" class="proof-tile" aria-controls="pp1" aria-selected="true">
+            <span class="tile-face">
+              <svg class="tile-mark" viewBox="0 0 40 40" fill="currentColor" aria-hidden="true"><path d="M20 6 34 34 20 27 6 34Z"/></svg>
+              <span class="visually-hidden">Northwind Logistics</span>
+            </span>
+          </button>
+          <button type="button" role="tab" id="pt2" class="proof-tile" aria-controls="pp2" aria-selected="false" tabindex="-1">
+            <span class="tile-face">
+              <svg class="tile-mark" viewBox="0 0 40 40" fill="currentColor" aria-hidden="true"><path d="M20 5 33 20 20 35 7 20Z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><circle cx="20" cy="20" r="3.4"/></svg>
+              <span class="visually-hidden">Kestrel Financial</span>
+            </span>
+          </button>
+          <button type="button" role="tab" id="pt3" class="proof-tile" aria-controls="pp3" aria-selected="false" tabindex="-1">
+            <span class="tile-face">
+              <svg class="tile-mark" viewBox="0 0 40 40" fill="currentColor" aria-hidden="true"><circle cx="20" cy="20" r="13.5" fill="none" stroke="currentColor" stroke-width="3"/><path d="M5 20h30" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>
+              <span class="visually-hidden">Meridian Health</span>
+            </span>
+          </button>
+          <button type="button" role="tab" id="pt4" class="proof-tile" aria-controls="pp4" aria-selected="false" tabindex="-1">
+            <span class="tile-face">
+              <svg class="tile-mark" viewBox="0 0 40 40" fill="currentColor" aria-hidden="true"><rect x="6" y="6" width="11" height="28" rx="3"/><rect x="21" y="6" width="13" height="15" rx="3"/><rect x="21" y="25" width="13" height="9" rx="3"/></svg>
+              <span class="visually-hidden">Lumen Manufacturing</span>
+            </span>
+          </button>
+          <button type="button" role="tab" id="pt5" class="proof-tile" aria-controls="pp5" aria-selected="false" tabindex="-1">
+            <span class="tile-face">
+              <svg class="tile-mark" viewBox="0 0 40 40" fill="currentColor" aria-hidden="true"><path d="M20 7 33 30H7Z" fill-opacity=".5"/><circle cx="20" cy="24" r="8.5"/></svg>
+              <span class="visually-hidden">Vantage Retail</span>
+            </span>
+          </button>
+      </div>
+
+      <!-- Shows the rotation is running and how far through it is. The bar is
+           the same mechanic the commitments rail uses, on the same --auto-ms. -->
+      <div class="auto-bar" aria-hidden="true"><span class="auto-bar-fill"></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================ 7 · Delivery formats · standard ===== -->
+<section class="s-standard s-tint" id="formats">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="kicker">Delivery</p>
+      <h2 class="t-h2">Choose how your training is delivered</h2>
+      <p class="t-lead">Live virtual, hybrid, or in person, scheduled around your teams&rsquo; calendars and priorities.</p>
+    </div>
+
+    <!-- The same specification table the outcomes schedule uses, in its light
+         form. Three parallel options compare best in aligned rows, and the page
+         already has enough card decks and pickers without a fourth. -->
+    <div class="format-table reveal">
+      <!-- Column labels only describe the desktop grid, so they are hidden from
+           assistive tech and from the stacked layout. -->
+      <div class="format-thead" aria-hidden="true">
+        <span>Format</span>
+        <span>Duration</span>
+        <span>What it includes</span>
+      </div>
+
+      <div class="format-rows">
+        <div class="format-row">
+          <h3 class="format-name">Live Virtual</h3>
+          <p class="format-dur">2 to 8 days &middot; 4 to 6 hrs a day</p>
+          <p class="format-what">Intensive bootcamps pair core concepts with hands-on case studies and end with a project each person applies to their own role.</p>
+        </div>
+        <div class="format-row">
+          <h3 class="format-name">Hybrid</h3>
+          <p class="format-dur">Weekly cadence</p>
+          <p class="format-what">Faculty teach a lesson each week, followed by assignments and a live session with a practitioner.</p>
+        </div>
+        <div class="format-row">
+          <h3 class="format-name">In Person</h3>
+          <p class="format-dur">2 to 5 days on site</p>
+          <p class="format-what">Faculty cover the concepts and practitioners lead the hands-on work, in one concentrated block at your site.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="sub-block reveal">
+      <h3 class="t-h2-sm">Start curated, or build custom</h3>
+      <div class="options">
+        <div class="option">
+          <h4>Curated program</h4>
+          <p class="t-sm">Choose from our existing AI and technology catalog and run it as is.</p>
+        </div>
+        <div class="option">
+          <h4>Custom program</h4>
+          <p class="t-sm">We build around your goals, audience, timeline, and budget. Your team approves curriculum and dates before we begin.</p>
+        </div>
+        <div class="option">
+          <h4>Pilot first</h4>
+          <p class="t-sm">Run one cohort in one layer, review the assessment data, then scale across functions.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================ 8 · For your role · standard ========
+     Three seats, per the source copy spec.
+     ==================================================================== -->
+<section class="s-standard" id="for-your-role">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="kicker">For Your Role</p>
+      <h2 class="t-h2">Start with your role</h2>
+      <p class="t-lead">Each leadership function needs something different from a training program.</p>
+    </div>
+
+    <!-- An accordion, one seat open at a time. The three readers are
+         alternatives and only one of them is you, so opening all three would
+         spend three blocks of attention to deliver one block of information. -->
+    <div class="seats reveal" id="seatAccordion">
+      <div class="seat" data-state="active">
+        <!-- Sits outside the collapsing body so it can span the full height of
+             the row, heading included. -->
+        <div class="seat-media" aria-hidden="true">
+          <img src="assets/seat-1.jpg" alt="" width="1600" height="800" loading="lazy" decoding="async">
+        </div>
+        <h3 class="seat-h">
+          <button type="button" class="seat-trigger" id="st1" aria-expanded="true" aria-controls="sb1">
+            <span class="seat-ico" aria-hidden="true"><i class="ico ico-run-tech"></i></span>
+            <span class="seat-label">If you run Technology &amp; Engineering</span>
+            <span class="seat-chev" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+            </span>
+          </button>
+        </h3>
+        <div class="seat-body" id="sb1" role="region" aria-labelledby="st1">
+          <div class="seat-body-in">
+            <div class="seat-copy">
+              <p class="t-body">Programs built with working practitioners, taught inside your own environment, and tracked against competency metrics you can take to the board.</p>
+              <a class="btn btn-primary" href="#get-started" data-interest="Technology Teams">Schedule Technical Deep Dive <span class="arr" aria-hidden="true">&rarr;</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="seat" data-state="resting">
+        <!-- Sits outside the collapsing body so it can span the full height of
+             the row, heading included. -->
+        <div class="seat-media" aria-hidden="true">
+          <img src="assets/seat-2.jpg" alt="" width="1600" height="800" loading="lazy" decoding="async">
+        </div>
+        <h3 class="seat-h">
+          <button type="button" class="seat-trigger" id="st2" aria-expanded="false" aria-controls="sb2">
+            <span class="seat-ico" aria-hidden="true"><i class="ico ico-ld"></i></span>
+            <span class="seat-label">If you run L&amp;D &amp; Talent Development</span>
+            <span class="seat-chev" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+            </span>
+          </button>
+        </h3>
+        <div class="seat-body" id="sb2" role="region" aria-labelledby="st2">
+          <div class="seat-body-in">
+            <div class="seat-copy">
+              <p class="t-body">Guaranteed adoption, backed by end-to-end cohort management, tracking from baseline to outcome, and clear internal mobility paths for your employees.</p>
+              <a class="btn btn-primary" href="#get-started" data-interest="Fluency, workforce-wide">Schedule L&amp;D Strategy Call <span class="arr" aria-hidden="true">&rarr;</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="seat" data-state="resting">
+        <!-- Sits outside the collapsing body so it can span the full height of
+             the row, heading included. -->
+        <div class="seat-media" aria-hidden="true">
+          <img src="assets/seat-3.jpg" alt="" width="1600" height="800" loading="lazy" decoding="async">
+        </div>
+        <h3 class="seat-h">
+          <button type="button" class="seat-trigger" id="st3" aria-expanded="false" aria-controls="sb3">
+            <span class="seat-ico" aria-hidden="true"><i class="ico ico-finance"></i></span>
+            <span class="seat-label">If you sponsor or fund the initiative</span>
+            <span class="seat-chev" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+            </span>
+          </button>
+        </h3>
+        <div class="seat-body" id="sb3" role="region" aria-labelledby="st3">
+          <div class="seat-body-in">
+            <div class="seat-copy">
+              <p class="t-body">Transparent pricing per cohort, plus an evidence-based ROI framework you can use when renewal comes up.</p>
+              <a class="btn btn-primary" href="#get-started" data-interest="Leadership">Request Pricing &amp; Commercial Model <span class="arr" aria-hidden="true">&rarr;</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================ 9 · From our founder · band =========
+     Position 9 is deliberate. The video carries no information the buying
+     committee needs, so it sits as a beat immediately before the ask.
+     TO ADD THE REAL VIDEO: set data-video on the button below to an embed
+     URL, for example https://www.youtube.com/embed/VIDEO_ID?autoplay=1
+     ==================================================================== -->
+<section class="s-band s-tint">
+  <div class="wrap founder-grid">
+    <div class="section-head section-head--left reveal">
+      <p class="kicker">Our Philosophy</p>
+      <h2 class="t-h2-sm">Why we built it this way</h2>
+      <p class="t-lead">A short conversation on designing enterprise training around measured capability instead of completion.</p>
+    </div>
+    <button type="button" class="video-poster reveal" id="videoTrigger" data-video="" aria-label="Play the founder conversation">
+      <span class="play" aria-hidden="true"></span>
+    </button>
+  </div>
+</section>
+
+<dialog class="lightbox" id="videoLightbox" aria-label="Founder conversation">
+  <button type="button" class="lightbox-close" id="lightboxClose" aria-label="Close video">&times;</button>
+  <div class="lightbox-inner" id="lightboxInner"></div>
+</dialog>
+
+<!-- ================================ 10 · FAQ · light ==================== -->
+<section class="s-light" id="faq">
+  <div class="wrap faq-wrap">
+    <div class="section-head reveal">
+      <p class="kicker">Before You Ask</p>
+      <h2 class="t-h2">Questions your team will raise</h2>
+      <p class="t-lead">The objections that come up once a buying committee starts to form a view.</p>
+    </div>
+
+    <div class="reveal">
+      <details class="faq">
+        <summary>How is this different from self-paced video content or licenses we already have?<span class="faq-sign" aria-hidden="true"></span></summary>
+        <p class="t-body faq-answer">Licenses give people passive content, and completion rates tend to be low. Our programs are built for your teams, with live faculty, projects on your own use cases, and skill growth you can measure.</p>
+      </details>
+      <details class="faq">
+        <summary>What if people fall behind?<span class="faq-sign" aria-hidden="true"></span></summary>
+        <p class="t-body faq-answer">A dedicated program manager tracks progress, sends weekly updates to leadership, and gives participants direct feedback so they come away with skills they can use in daily work.</p>
+      </details>
+      <details class="faq">
+        <summary>Who owns what our teams build?<span class="faq-sign" aria-hidden="true"></span></summary>
+        <p class="t-body faq-answer">You do. Projects run on your use cases.</p>
+      </details>
+      <details class="faq">
+        <summary>Can we run a limited proof-of-concept before committing at scale?<span class="faq-sign" aria-hidden="true"></span></summary>
+        <p class="t-body faq-answer">Yes. Start with a single cohort, layer, or function, and expand after reviewing initial assessment data.</p>
+      </details>
+      <details class="faq">
+        <summary>How long does a program run?<span class="faq-sign" aria-hidden="true"></span></summary>
+        <p class="t-body faq-answer">It depends on the format and your team&rsquo;s bandwidth. Live Virtual runs 2 to 8 days, Hybrid runs weekly over a couple of weeks, and In Person runs 2 to 5 days.</p>
+      </details>
+      <details class="faq">
+        <summary>How do you keep up with industry trends?<span class="faq-sign" aria-hidden="true"></span></summary>
+        <p class="t-body faq-answer">We co-design curricula with practicing industry experts and update them based on ongoing research into new technologies.</p>
+      </details>
+      <details class="faq">
+        <summary>Can you deliver at scale?<span class="faq-sign" aria-hidden="true"></span></summary>
+        <p class="t-body faq-answer">Yes. We have run upskilling programs for 10,000+ employees at Fortune 500 companies worldwide.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ================================ 11 · Get started · terminal ========= -->
+<section class="s-terminal" id="get-started">
+  <div class="wrap terminal-grid">
+
+    <div class="terminal-intro">
+      <p class="kicker">Next Step</p>
+      <h2 class="t-h2">Let us design your program</h2>
+      <p class="t-lead">Start with a free 90-minute session for your team, or go straight to a scoped proposal.</p>
+
+      <ul class="contact-list" role="list">
+        <li>
+          <span class="contact-ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 7 12 13l8.5-6"/></svg>
+          </span>
+          <a href="mailto:enterprisesolutions@mygreatlearning.com">enterprisesolutions@mygreatlearning.com</a>
+        </li>
+        <li>
+          <span class="contact-ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3.5h3l1.5 4-2 1.5a12 12 0 0 0 6 6l1.5-2 4 1.5v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.5 5.7 2 2 0 0 1 6.5 3.5z"/></svg>
+          </span>
+          <a href="tel:+17372588880">+1 737 258 8880</a>
+        </li>
+        <li>
+          <span class="contact-ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M3.6 19.6a5.4 5.4 0 0 1 10.8 0"/><circle cx="17.2" cy="9.6" r="2.3"/><path d="M16.6 15.2a4.5 4.5 0 0 1 3.9 4.4"/></svg>
+          </span>
+          <span>Enterprise Solutions</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="form-card">
+      <form id="consultForm" novalidate>
+        <div class="field-grid">
+          <div class="field">
+            <label for="fullName">Full Name <span class="req" aria-hidden="true">*</span></label>
+            <input type="text" id="fullName" name="fullName" autocomplete="name" required aria-required="true" aria-describedby="fullNameError">
+            <span class="field-error" id="fullNameError"></span>
+          </div>
+          <div class="field">
+            <label for="jobTitle">Job Title</label>
+            <input type="text" id="jobTitle" name="jobTitle" autocomplete="organization-title">
+          </div>
+          <div class="field">
+            <label for="workEmail">Work Email <span class="req" aria-hidden="true">*</span></label>
+            <input type="email" id="workEmail" name="workEmail" autocomplete="email" required aria-required="true" aria-describedby="workEmailError">
+            <span class="field-error" id="workEmailError"></span>
+          </div>
+          <div class="field">
+            <label for="company">Company <span class="req" aria-hidden="true">*</span></label>
+            <input type="text" id="company" name="company" autocomplete="organization" required aria-required="true" aria-describedby="companyError">
+            <span class="field-error" id="companyError"></span>
+          </div>
+          <div class="field field-full">
+            <label for="interest">Area Of Interest</label>
+            <select id="interest" name="interest">
+              <option value="">Select one</option>
+              <option>Fluency, workforce-wide</option>
+              <option>Technology Teams</option>
+              <option>Leadership</option>
+              <option>Not Sure Yet</option>
+            </select>
+          </div>
+          <div class="field field-full">
+            <label for="format">Preferred Format</label>
+            <select id="format" name="format">
+              <option value="">Select one</option>
+              <option>Live Virtual</option>
+              <option>Hybrid</option>
+              <option>In Person</option>
+              <option>Not Sure Yet</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-foot">
+          <button type="submit" class="btn btn-lg btn-primary btn-block">Request A Consultation</button>
+          <p class="form-note">We will confirm the right engagement type on the call</p>
+        </div>
+        <p class="visually-hidden" role="status" aria-live="polite" id="formStatus"></p>
+      </form>
+
+      <div class="form-success" id="formSuccess" hidden>
+        <h3 class="t-h3">Thank you. Your request is in.</h3>
+        <p class="t-body">A member of the Enterprise Solutions team will reply within one business day to confirm the right engagement type.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+
+      <div class="footer-brand">
+        <p class="footer-mark">
+          <img src="assets/gl-logo.svg" alt="Great Learning" width="115" height="36">
+          <span>for Business</span>
+        </p>
+        <!-- NEWLY AUTHORED, not in the source copy spec. Needs content approval. -->
+        <p class="footer-blurb">AI and technology training for enterprise workforces, built around measured capability.</p>
+      </div>
+
+      <div>
+        <h2 class="footer-h">Also serving</h2>
+        <ul class="footer-list" role="list">
+          <li>Government and public organizations</li>
+          <li>Associations and member benefits</li>
+          <li>Universities and schools</li>
+          <li>Reseller partnerships</li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="footer-h">Insights</h2>
+        <ul class="footer-list" role="list">
+          <li><a href="https://www.mygreatlearning.com/blog/">Articles and research <span class="arr" aria-hidden="true">&rarr;</span></a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- The reference puts Privacy Policy and Terms of Service on the right of
+         this row. They are not here because their real URLs are not confirmed,
+         and a footer policy link that goes nowhere is worse than no link. Add
+         them once Legal supplies the paths. -->
+    <div class="footer-bottom">
+      <p>&copy; 2026 Great Learning. All rights reserved.</p>
+      <p>Enterprise Solutions &middot; <a href="mailto:enterprisesolutions@mygreatlearning.com">enterprisesolutions@mygreatlearning.com</a> &middot; <a href="tel:+17372588880">+1 737 258 8880</a></p>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>

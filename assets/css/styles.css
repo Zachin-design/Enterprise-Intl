@@ -1,0 +1,2588 @@
+/* ==========================================================================
+   Great Learning — Enterprise (B2B)
+   Tokens inherited from the Great Learning design system for cross-property
+   consistency. Identity preservation: Poppins and #196AE5 are committed brand.
+   ========================================================================== */
+
+:root {
+  /* Brand */
+  --primary-main: #196AE5;
+  --primary-dark: #0F4089;
+  --primary-light: #4788EA;
+  --primary-wash: #F0F5FE;
+  --primary-hover: rgba(25, 106, 229, .04);
+
+  /* Text on light */
+  --text-primary: rgba(33, 33, 33, .92);
+  --text-secondary: rgba(33, 33, 33, .72);
+  --text-tertiary: rgba(33, 33, 33, .70);
+
+  /* Surfaces */
+  --bg-paper: #FFFFFF;
+  --bg-default: #FAFAFA;
+  --bg-wash: #F4F7FC;
+  --ink: #0C1626;
+  --ink-raised: #16243A;
+
+  /* Text on ink — verified ≥4.5:1 against --ink */
+  --ink-text: rgba(255, 255, 255, .95);
+  --ink-text-secondary: rgba(255, 255, 255, .78);
+  --ink-border: rgba(255, 255, 255, .16);
+
+  /* Lines */
+  --divider: rgba(33, 33, 33, .09);
+  --divider-strong: rgba(33, 33, 33, .16);
+
+  /* Draft marker — amber, used as full border plus tint, never a side stripe */
+  --draft-bg: #FFFBF0;
+  --draft-border: #E8C36A;
+  --draft-ink: #573A04;
+
+  /* Radius */
+  --r-sm: 4px;
+  --r-md: 12px;
+  --r-lg: 16px;
+  --r-xl: 24px;
+  --r-panel: 28px;
+  --r-pill: 9999px;
+
+  /* Elevation */
+  --shadow-1: 0 1px 3px rgba(12, 22, 38, .06), 0 1px 1px rgba(12, 22, 38, .05);
+  --shadow-2: 0 2px 8px rgba(12, 22, 38, .07), 0 1px 2px rgba(12, 22, 38, .05);
+  --shadow-4: 0 8px 24px rgba(12, 22, 38, .08), 0 2px 6px rgba(12, 22, 38, .05);
+  --shadow-8: 0 18px 48px rgba(12, 22, 38, .12), 0 4px 12px rgba(12, 22, 38, .06);
+
+  /* Type */
+  --font-sans: 'Poppins', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  /* Layout */
+  --max-width: 1280px;
+  --measure: 62ch;
+  --gutter: 24px;
+  --header-h: 56px;
+
+  /* Motion — strong curves; CSS defaults are too weak */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+  /* Reserved for the hero switcher, so it reads as more considered than a hover */
+  --ease-feature: cubic-bezier(0.5, 0, 0.5, 1);
+  --dur-feature: 600ms;
+
+  /* Semantic z-index scale */
+  --z-base: 1;
+  --z-sticky: 100;
+  --z-drawer-backdrop: 200;
+  --z-drawer: 210;
+  --z-modal-backdrop: 300;
+  --z-modal: 310;
+}
+
+@media (min-width: 992px) {
+  :root { --gutter: 40px; }
+}
+
+/* The full GL nav needs 1120px to sit on one row without the last item sliding
+   under the Login chip. Below that the hamburger drawer carries every link. */
+@media (min-width: 1120px) {
+  :root { --header-h: 70px; }
+}
+
+/* ==========================================================================
+   Reset and base
+   ========================================================================== */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+body {
+  margin: 0;
+  background: var(--bg-paper);
+  color: var(--text-primary);
+  font: 400 16px/1.6 var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, p, ul, ol, dl, dd, figure, blockquote { margin: 0; }
+ul, ol { padding: 0; list-style: none; }
+img, svg, video { display: block; max-width: 100%; }
+img { height: auto; }
+button { font: inherit; color: inherit; }
+a { color: inherit; }
+
+:focus-visible {
+  outline: 2px solid var(--primary-main);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.skip-link {
+  position: absolute;
+  left: 12px;
+  top: -64px;
+  z-index: var(--z-modal);
+  padding: 12px 20px;
+  background: var(--primary-main);
+  color: #fff;
+  font: 600 14px var(--font-sans);
+  text-decoration: none;
+  border-radius: var(--r-sm);
+  transition: top 180ms var(--ease-out);
+}
+.skip-link:focus { top: 12px; }
+
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ==========================================================================
+   Typography scale — modular, fluid, ≥1.25 between steps
+   ========================================================================== */
+
+h1, h2, h3 { text-wrap: balance; font-weight: 600; }
+p { text-wrap: pretty; }
+
+.t-display {
+  font-size: clamp(2.375rem, 1.55rem + 3.4vw, 3.875rem);
+  line-height: 1.06;
+  letter-spacing: -0.032em;
+}
+.t-h2-full {
+  font-size: clamp(2rem, 1.5rem + 2.1vw, 2.75rem);
+  line-height: 1.12;
+  letter-spacing: -0.028em;
+}
+.t-h2 {
+  font-size: clamp(1.75rem, 1.45rem + 1.25vw, 2.25rem);
+  line-height: 1.15;
+  letter-spacing: -0.024em;
+}
+.t-h2-sm {
+  font-size: clamp(1.5rem, 1.35rem + 0.6vw, 1.75rem);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+.t-h3 {
+  font-size: 1.25rem;
+  line-height: 1.3;
+  letter-spacing: -0.012em;
+}
+.t-lead {
+  font-size: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
+  line-height: 1.55;
+  color: var(--text-secondary);
+}
+.t-body { font-size: 1rem; line-height: 1.65; color: var(--text-secondary); }
+.t-sm { font-size: 0.9375rem; line-height: 1.6; color: var(--text-secondary); }
+.t-xs { font-size: 0.8125rem; line-height: 1.5; color: var(--text-tertiary); }
+
+.measure { max-width: var(--measure); }
+.measure-narrow { max-width: 46ch; }
+
+/* ==========================================================================
+   Layout
+   ========================================================================== */
+
+.wrap {
+  width: 100%;
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* Section weight system.
+   The source spec is explicit that the failed prototype applied one uniform
+   template to every section and flattened all hierarchy. These five densities
+   are the fix. Mobile padding is roughly half of desktop. */
+
+.s-band     { padding-block: 32px; }
+.s-light    { padding-block: 48px; }
+.s-standard { padding-block: 48px; }
+.s-full     { padding-block: 56px; }
+.s-terminal { padding-block: 48px; }
+
+@media (min-width: 768px) {
+  .s-band     { padding-block: 56px; }
+  .s-light    { padding-block: 96px; }
+  .s-standard { padding-block: 96px; }
+  .s-full     { padding-block: 120px; }
+  .s-terminal { padding-block: 96px; }
+}
+
+.s-full { background: var(--bg-default); }
+.s-terminal { background: var(--ink); color: var(--ink-text); }
+
+/* Ground alternation. One alternate ground, not several, so the page reads as
+   banded rather than patchworked. From section 3 onward the grounds run
+   tinted, white, ink, white, tinted, white, tinted, white, ink, which gives
+   every section an edge against its neighbours without adding a colour. */
+.s-tint { background: var(--bg-default); }
+
+section[id] { scroll-margin-top: calc(var(--header-h) + 16px); }
+
+/* ==========================================================================
+   Kicker — the eyebrow, deliberately NOT tiny-uppercase-tracked.
+   The source copy mandates an eyebrow on nine sections; rendering all nine as
+   small caps with wide tracking is the saturated AI section-grammar tell, so
+   the content is kept and the treatment is not.
+   ========================================================================== */
+
+.kicker {
+  margin-bottom: 16px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--primary-main);
+  letter-spacing: 0;
+}
+.s-terminal .kicker { color: var(--primary-light); }
+
+/* Centered header block: kicker, H2, then a subhead on a narrow measure. */
+.section-head {
+  margin-bottom: 40px;
+  text-align: center;
+  max-width: 720px;
+  margin-inline: auto;
+}
+.section-head .t-lead,
+.section-head .t-body { margin-inline: auto; max-width: 640px; }
+.section-head .t-lead { margin-top: 16px; }
+.section-head .t-body { margin-top: 14px; }
+
+@media (min-width: 768px) {
+  .section-head { margin-bottom: 64px; }
+}
+
+/* The founder band sits beside its video, so its header stays left aligned. */
+.section-head--left {
+  text-align: left;
+  margin-inline: 0;
+  margin-bottom: 0;
+}
+.section-head--left .t-lead,
+.section-head--left .t-body { margin-inline: 0; }
+
+/* Panel: the stacked full-width block Calendly uses for staged content,
+   at a radius that still reads as Great Learning rather than pill-soft. */
+.panel {
+  padding: 32px 24px;
+  border-radius: var(--r-panel);
+  background: var(--bg-paper);
+  border: 1px solid var(--divider);
+}
+.panel + .panel { margin-top: 20px; }
+@media (min-width: 860px) {
+  .panel {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    align-items: center;
+    padding: 48px;
+  }
+  .panel-reverse > :first-child { order: 2; }
+}
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 11px 22px;
+  border: 1px solid transparent;
+  border-radius: var(--r-sm);
+  background: none;
+  font: 600 0.9375rem var(--font-sans);
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 160ms var(--ease-out),
+              border-color 160ms var(--ease-out),
+              color 160ms var(--ease-out),
+              box-shadow 160ms var(--ease-out),
+              transform 120ms var(--ease-out);
+}
+.btn:active { transform: scale(0.97); }
+
+.btn-lg { min-height: 52px; padding: 14px 28px; font-size: 1rem; }
+
+.btn-primary { background: var(--primary-main); color: #fff; box-shadow: var(--shadow-2); }
+.btn-primary:hover { background: var(--primary-dark); box-shadow: var(--shadow-4); }
+
+.btn-outline {
+  border-color: var(--divider-strong);
+  color: var(--text-primary);
+  background: var(--bg-paper);
+}
+.btn-outline:hover { border-color: var(--primary-main); color: var(--primary-main); background: var(--primary-hover); }
+
+.btn-quiet {
+  padding: 11px 0;
+  min-height: 44px;
+  color: var(--primary-main);
+  font-weight: 600;
+}
+.btn-quiet .arr { transition: transform 200ms var(--ease-out); }
+.btn-quiet:hover .arr { transform: translateX(4px); }
+
+.s-terminal .btn-outline {
+  background: transparent;
+  border-color: var(--ink-border);
+  color: var(--ink-text);
+}
+.s-terminal .btn-outline:hover { border-color: #fff; background: rgba(255,255,255,.06); color: #fff; }
+
+/* ==========================================================================
+   Icons
+   The supplied marks are single colour with fill="currentColor". Painting them
+   through a mask keeps one file per icon while letting each context set its own
+   colour, which an <img> could not do, and avoids inlining the path data three
+   times over.
+   ========================================================================== */
+
+.ico {
+  display: block;
+  background: currentColor;
+  -webkit-mask: var(--ico) center / contain no-repeat;
+          mask: var(--ico) center / contain no-repeat;
+}
+/* Inlined as data URIs rather than referenced as files. A mask pointing at an
+   external SVG is blocked when the page is opened straight from disk over
+   file://, which is how this gets reviewed, so the icons vanished while the
+   badges behind them still drew. Inlining also removes three requests. */
+.ico-fluency { --ico: url("data:image/svg+xml,%3Csvg fill='currentColor' xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 -960 960 960'%3E%3Cstyle%3Esvg:root{color:%23196ae5}%3C/style%3E%3Cpath d='m446-418 2 30q.74 6.22 4.78 10.11 4.05 3.89 9.94 3.89h32.39q5.89 0 10.02-3.89 4.12-3.89 4.87-10.11l2-30q12-2 22.47-8.46Q544.94-432.92 553-441l30 10q5 2 10 0t7.8-6.85l15.4-26.3q2.8-4.85 2.3-9.85t-5.19-9.17L593-499q5-14 5-29t-5-29l20.31-15.83Q618-577 618.5-582t-2.3-9.85l-15.4-26.3Q598-623 593-625t-10 0l-30 10q-8.33-7.69-19.17-13.85Q523-635 512-638l-2-30q-.74-6.22-4.78-10.11-4.05-3.89-9.94-3.89h-32.39q-5.89 0-10.01 3.89-4.13 3.89-4.88 10.11l-2 30q-11 3-21.83 9.15Q413.33-622.69 405-615l-30-10q-5-2-10 0t-7.8 6.85l-15.4 26.3Q339-587 339.5-582t5.19 9.17L365-557q-5 14-5 29t5 29l-20.31 15.83Q340-479 339.5-474t2.3 9.85l15.4 26.3Q360-433 365-431t10 0l30-10q8.06 8.08 18.53 14.54Q434-420 446-418Zm-16.5-60.38q-20.5-20.38-20.5-49.5t20.38-49.62q20.38-20.5 49.5-20.5t49.62 20.38q20.5 20.38 20.5 49.5t-20.38 49.62q-20.38 20.5-49.5 20.5t-49.62-20.38ZM240-252q-57-52-88.5-121.5T120-520q0-150 105-255t255-105q125 0 221.5 73.5T827-615l55 218q4 14-5 25.5T853-360h-93v140q0 24.75-17.62 42.37Q724.75-160 700-160H600v50q0 12.75-8.68 21.37-8.67 8.63-21.5 8.63-12.82 0-21.32-8.63Q540-97.25 540-110v-80q0-12.75 8.63-21.38Q557.25-220 570-220h130v-170q0-12.75 8.63-21.38Q717.25-420 730-420h84l-45-180q-24-97-105-158.5T480-820q-125 0-212.5 86.5T180-522.46q0 64.42 26.32 122.39Q232.65-342.09 281-297l19 18v169q0 12.75-8.68 21.37-8.67 8.63-21.5 8.63-12.82 0-21.32-8.63Q240-97.25 240-110v-142Zm257-198Z'/%3E%3C/svg%3E"); }
+.ico-technology { --ico: url("data:image/svg+xml,%3Csvg fill='currentColor' xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 -960 960 960'%3E%3Cstyle%3Esvg:root{color:%23196ae5}%3C/style%3E%3Cpath d='M377-407v-145q0-12.75 8.63-21.38Q394.25-582 407-582h145q12.75 0 21.38 8.62Q582-564.75 582-552v145q0 12.75-8.62 21.37Q564.75-377 552-377H407q-12.75 0-21.37-8.63Q377-394.25 377-407Zm60-30h85v-85h-85v85Zm-77 287v-50H260q-24 0-42-18t-18-42v-100h-50q-12.75 0-21.37-8.68-8.63-8.67-8.63-21.5 0-12.82 8.63-21.32 8.62-8.5 21.37-8.5h50v-124h-50q-12.75 0-21.37-8.68-8.63-8.67-8.63-21.5 0-12.82 8.63-21.32 8.62-8.5 21.37-8.5h50v-100q0-24 18-42t42-18h100v-46q0-12.75 8.68-21.38 8.67-8.62 21.5-8.62 12.82 0 21.32 8.62 8.5 8.63 8.5 21.38v46h124v-46q0-12.75 8.68-21.38 8.67-8.62 21.5-8.62 12.82 0 21.32 8.62 8.5 8.63 8.5 21.38v46h100q24 0 42 18t18 42v100h46q12.75 0 21.38 8.68 8.62 8.67 8.62 21.5 0 12.82-8.62 21.32-8.63 8.5-21.38 8.5h-46v124h46q12.75 0 21.38 8.68 8.62 8.67 8.62 21.5 0 12.82-8.62 21.32-8.63 8.5-21.38 8.5h-46v100q0 24-18 42t-42 18H604v50q0 12.75-8.68 21.37-8.67 8.63-21.5 8.63-12.82 0-21.32-8.63-8.5-8.62-8.5-21.37v-50H420v50q0 12.75-8.68 21.37-8.67 8.63-21.5 8.63-12.82 0-21.32-8.63-8.5-8.62-8.5-21.37Zm344-110v-444H260v444h444ZM480-480Z'/%3E%3C/svg%3E"); }
+.ico-leadership { --ico: url("data:image/svg+xml,%3Csvg fill='currentColor' xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 -960 960 960'%3E%3Cstyle%3Esvg:root{color:%23196ae5}%3C/style%3E%3Cpath d='M30-240q-12.75 0-21.37-8.63Q0-257.25 0-270v-23q0-38.57 41.5-62.78Q83-380 150.38-380q12.16 0 23.39.5t22.23 2.15q-8 17.35-12 35.17-4 17.81-4 37.18v65H30Zm240 0q-12.75 0-21.37-8.63Q240-257.25 240-270v-35q0-32 17.5-58.5T307-410q32-20 76.5-30t96.5-10q53 0 97.5 10t76.5 30q32 20 49 46.5t17 58.5v35q0 12.75-8.62 21.37Q702.75-240 690-240H270Zm510 0v-65q0-19.86-3.5-37.43T765-377.27q11-1.73 22.17-2.23 11.17-.5 22.83-.5 67.5 0 108.75 23.77T960-293v23q0 12.75-8.62 21.37Q942.75-240 930-240H780Zm-480-60h360v-6q0-37-50.5-60.5T480-390q-79 0-129.5 23.5T300-305v5ZM149.57-410q-28.57 0-49.07-20.56Q80-451.13 80-480q0-29 20.56-49.5Q121.13-550 150-550q29 0 49.5 20.5t20.5 49.93q0 28.57-20.5 49.07T149.57-410Zm660 0q-28.57 0-49.07-20.56Q740-451.13 740-480q0-29 20.56-49.5Q781.13-550 810-550q29 0 49.5 20.5t20.5 49.93q0 28.57-20.5 49.07T809.57-410ZM480-480q-50 0-85-35t-35-85q0-51 35-85.5t85-34.5q51 0 85.5 34.5T600-600q0 50-34.5 85T480-480Zm.35-60Q506-540 523-557.35t17-43Q540-626 522.85-643t-42.5-17q-25.35 0-42.85 17.15t-17.5 42.5q0 25.35 17.35 42.85t43 17.5ZM480-300Zm0-300Z'/%3E%3C/svg%3E"); }
+.ico-building { --ico: url("data:image/svg+xml,%3Csvg fill='currentColor' xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 -960 960 960'%3E%3Cstyle%3Esvg:root{color:%23196ae5}%3C/style%3E%3Cpath d='M354-370q-97.08 0-165.04-67.67Q121-505.33 121-602q0-20 3-37.5t11-36.5q3-8 9-12t12.81-6q6.81-2 14 0t13.19 8l113 113 92-86-118-118q-6.15-5.93-8.08-12.96Q261-797 263-804q2-7 6-12.25t12-8.75q19-8 36-11.5t36.85-3.5q99.23 0 168.69 69.42Q592-701.17 592-602q0 24-5 47t-13 46l221 221q27 26 26.5 63.5T793-161q-26 24-61.5 23.5T670-164L447-388q-23 8-46 13t-47 5Zm0-60q25 0 53-8t49-24l257 257q8 8 20 8t20-8q8-8 8-20t-8-20L500-498q16-21 24-49.5t8-54.5q0-75-55.5-127T350-782l102 104q9 9 8.5 21.5T451-635L318-510q-9.27 8-21.64 8-12.36 0-20.36-8l-98-97q3 77 54.67 127T354-430Zm117-58Z'/%3E%3C/svg%3E"); }
+.ico-together { --ico: url("data:image/svg+xml,%3Csvg fill='currentColor' xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 -960 960 960'%3E%3Cstyle%3Esvg:root{color:%23196ae5}%3C/style%3E%3Cpath d='M40-190v-130q0-29 20.5-49.5T110-390h141q17 0 32.5 8.5T310-358q29 42 74 65t96 23q51 0 96-23t75-65q11-15 26-23.5t32-8.5h141q29 0 49.5 20.5T920-320v130q0 13-8.5 21.5T890-160H690q-13 0-21.5-8.5T660-190v-89q-36 33-82.5 51T480-210q-51 0-97-18t-83-51v89q0 13-8.5 21.5T270-160H70q-13 0-21.5-8.5T40-190Zm440-140q-35 0-67.5-16.5T360-392q-16-23-38.5-37T273-448q29-30 91-46t116-16q54 0 116.5 16t91.5 46q-26 5-48.5 19T601-392q-20 29-52.5 45.5T480-330ZM160-460q-45 0-77.5-32.5T50-570q0-46 32.5-78t77.5-32q46 0 78 32t32 78q0 45-32 77.5T160-460Zm640 0q-45 0-77.5-32.5T690-570q0-46 32.5-78t77.5-32q46 0 78 32t32 78q0 45-32 77.5T800-460ZM480-580q-45 0-77.5-32.5T370-690q0-46 32.5-78t77.5-32q46 0 78 32t32 78q0 45-32 77.5T480-580Z'/%3E%3C/svg%3E"); }
+.ico-measuring { --ico: url("data:image/svg+xml,%3Csvg fill='currentColor' xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 -960 960 960'%3E%3Cstyle%3Esvg:root{color:%23196ae5}%3C/style%3E%3Cpath d='M292.5-473.38Q284-464.75 284-452v145q0 12.75 8.68 21.37 8.67 8.63 21.5 8.63 12.82 0 21.32-8.63 8.5-8.62 8.5-21.37v-145q0-12.75-8.68-21.38-8.67-8.62-21.5-8.62-12.82 0-21.32 8.62Zm332-215Q616-679.75 616-667v360q0 12.75 8.68 21.37 8.67 8.63 21.5 8.63 12.82 0 21.32-8.63 8.5-8.62 8.5-21.37v-360q0-12.75-8.68-21.38-8.67-8.62-21.5-8.62-12.82 0-21.32 8.62Zm-166 302Q450-377.75 450-365v58q0 12.75 8.68 21.37 8.67 8.63 21.5 8.63 12.82 0 21.32-8.63 8.5-8.62 8.5-21.37v-58q0-12.75-8.68-21.38-8.67-8.62-21.5-8.62-12.82 0-21.32 8.62ZM180-120q-24 0-42-18t-18-42v-600q0-24 18-42t42-18h600q24 0 42 18t18 42v600q0 24-18 42t-42 18H180Zm0-60h600v-600H180v600Zm0-600v600-600Zm321.5 289.32q8.5-8.67 8.5-21.5 0-12.82-8.68-21.32-8.67-8.5-21.5-8.5-12.82 0-21.32 8.68-8.5 8.67-8.5 21.5 0 12.82 8.68 21.32 8.67 8.5 21.5 8.5 12.82 0 21.32-8.68Z'/%3E%3C/svg%3E"); }
+.ico-run-tech { --ico: url("data:image/svg+xml,%3Csvg fill='currentColor' xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 -960 960 960'%3E%3Cstyle%3Esvg:root{color:%23196ae5}%3C/style%3E%3Cpath d='M501-540Zm-30 380H110q-12.75 0-21.37-8.68-8.63-8.67-8.63-21.5 0-12.82 8.63-21.32Q97.25-220 110-220h361q12.75 0 21.38 8.68 8.62 8.67 8.62 21.5 0 12.82-8.62 21.32-8.63 8.5-21.38 8.5ZM180-280q-24 0-42-18t-18-42v-400q0-24 18-42t42-18h630q12.75 0 21.38 8.68 8.62 8.67 8.62 21.5 0 12.82-8.62 21.32-8.63 8.5-21.38 8.5H180v400h291q12.75 0 21.38 8.68 8.62 8.67 8.62 21.5 0 12.82-8.62 21.32-8.63 8.5-21.38 8.5H180Zm640 60v-400H621v400h199Zm-214 60q-18 0-31.5-13.5T561-205v-430q0-18 13.5-31.5T606-680h229q18 0 31.5 13.5T880-635v430q0 18-13.5 31.5T835-160H606Zm115-360q12 0 21-9t9-21q0-12-9-21t-21.48-9Q709-580 700-571t-9 21.48q0 11.52 9 20.52t21 9Zm0 100Z'/%3E%3C/svg%3E"); }
+.ico-ld { --ico: url("data:image/svg+xml,%3Csvg fill='currentColor' xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 -960 960 960'%3E%3Cstyle%3Esvg:root{color:%23196ae5}%3C/style%3E%3Cpath d='M180-120q-24.75 0-42.37-17.63Q120-155.25 120-180v-600q0-24.75 17.63-42.38Q155.25-840 180-840h205q5-35 32-57.5t63-22.5q36 0 63 22.5t32 57.5h205q24.75 0 42.38 17.62Q840-804.75 840-780v600q0 24.75-17.62 42.37Q804.75-120 780-120H180Zm0-60h600v-600H180v600Zm130-100h213q12.75 0 21.38-8.68 8.62-8.67 8.62-21.5 0-12.82-8.62-21.32-8.63-8.5-21.38-8.5H310q-12.75 0-21.37 8.68-8.63 8.67-8.63 21.5 0 12.82 8.63 21.32 8.62 8.5 21.37 8.5Zm0-170h340q12.75 0 21.38-8.68 8.62-8.67 8.62-21.5 0-12.82-8.62-21.32-8.63-8.5-21.38-8.5H310q-12.75 0-21.37 8.68-8.63 8.67-8.63 21.5 0 12.82 8.63 21.32 8.62 8.5 21.37 8.5Zm0-170h340q12.75 0 21.38-8.68 8.62-8.67 8.62-21.5 0-12.82-8.62-21.32-8.63-8.5-21.38-8.5H310q-12.75 0-21.37 8.68-8.63 8.67-8.63 21.5 0 12.82 8.63 21.32 8.62 8.5 21.37 8.5Zm194.5-187.5Q515-818 515-832t-10.5-24.5Q494-867 480-867t-24.5 10.5Q445-846 445-832t10.5 24.5Q466-797 480-797t24.5-10.5ZM180-180v-600 600Z'/%3E%3C/svg%3E"); }
+.ico-finance { --ico: url("data:image/svg+xml,%3Csvg fill='currentColor' xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 -960 960 960'%3E%3Cstyle%3Esvg:root{color:%23196ae5}%3C/style%3E%3Cpath d='M212-271v-279q0-12.75 8.68-21.38 8.67-8.62 21.5-8.62 12.82 0 21.32 8.62 8.5 8.63 8.5 21.38v279q0 12.75-8.68 21.37-8.67 8.63-21.5 8.63-12.82 0-21.32-8.63-8.5-8.62-8.5-21.37Zm242 0v-279q0-12.75 8.68-21.38 8.67-8.62 21.5-8.62 12.82 0 21.32 8.62 8.5 8.63 8.5 21.38v279q0 12.75-8.68 21.37-8.67 8.63-21.5 8.63-12.82 0-21.32-8.63-8.5-8.62-8.5-21.37ZM110-121q-12.75 0-21.37-8.68-8.63-8.67-8.63-21.5 0-12.82 8.63-21.32Q97.25-181 110-181h740q12.75 0 21.38 8.68 8.62 8.67 8.62 21.5 0 12.82-8.62 21.32-8.63 8.5-21.38 8.5H110Zm578-150v-279q0-12.75 8.68-21.38 8.67-8.62 21.5-8.62 12.82 0 21.32 8.62 8.5 8.63 8.5 21.38v279q0 12.75-8.68 21.37-8.67 8.63-21.5 8.63-12.82 0-21.32-8.63-8.5-8.62-8.5-21.37Zm166-369H103q-9.58 0-16.29-6.71Q80-653.42 80-663v-17q0-6 3.5-11.5T92-700l358-204q14.17-8 30-8t30 8l357 203q6 4 9.5 10t3.5 13.5v10.23q0 11.59-7.47 19.43Q865.05-640 854-640Zm-640-60h532-532Zm0 0h532L480-852 214-700Z'/%3E%3C/svg%3E"); }
+
+/* ==========================================================================
+   Chips
+   ========================================================================== */
+
+.chip {
+  display: inline-block;
+  padding: 6px 12px;
+  border: 1px solid var(--divider);
+  border-radius: var(--r-pill);
+  background: var(--bg-paper);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--text-secondary);
+}
+.chip-list { display: flex; flex-wrap: wrap; gap: 8px; }
+.deck-body .chip-list { gap: 7px; }
+.deck-body .chip { padding: 5px 11px; }
+
+/* ==========================================================================
+   Draft marker — full border plus tint plus a chip.
+   Never a side stripe.
+   ========================================================================== */
+
+.is-draft {
+  position: relative;
+  border: 1px solid var(--draft-border);
+  border-radius: var(--r-lg);
+  background: var(--draft-bg);
+  padding: 28px 24px 24px;
+}
+.draft-flag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 18px;
+  padding: 5px 12px;
+  border-radius: var(--r-pill);
+  background: var(--draft-border);
+  color: var(--draft-ink);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+.draft-note {
+  margin-top: 16px;
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  color: var(--draft-ink);
+}
+
+/* ==========================================================================
+   Header — rebuild of the live mygreatlearning.com nav.
+   Measured from production: 70px desktop, 56px on the compact bar, white, fixed.
+   GL switches at 991px; this page switches at 1120px because the full item set
+   needs the extra room to clear the Login chip.
+   The production box-shadow is a hard 2px/2px offset; softened here to a
+   vertical-only shadow, which is the only intentional deviation.
+   ========================================================================== */
+
+body { padding-top: var(--header-h); }
+
+.site-header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: var(--header-h);
+  z-index: var(--z-sticky);
+  background: var(--bg-paper);
+  box-shadow: 0 1px 3px rgba(12, 22, 38, .13);
+}
+
+.header-inner {
+  height: 100%;
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+@media (min-width: 1366px) {
+  .header-inner { padding-inline: 0; }
+}
+@media (min-width: 1120px) and (max-width: 1365px) {
+  .header-inner { padding-inline: 24px; }
+}
+
+.brand { display: inline-flex; align-items: center; flex: none; }
+.brand img { width: 115px; height: 36px; }
+@media (max-width: 1119px) { .brand img { width: 93px; height: 29px; } }
+
+.nav-desktop { display: none; }
+
+@media (min-width: 1120px) {
+  .nav-desktop {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    margin-left: 16px;
+    min-width: 0;
+  }
+  .nav-link {
+    display: inline-flex;
+    align-items: center;
+    height: var(--header-h);
+    padding-inline: 14px;
+    /* Nav labels must never break mid-phrase in the tight band just above the
+       breakpoint, where flex children would otherwise shrink and wrap. */
+    white-space: nowrap;
+    flex: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: rgba(0, 0, 0, .87);
+    text-decoration: none;
+    transition: color 160ms var(--ease-out);
+  }
+  .nav-link:hover { color: var(--primary-main); }
+
+  /* Current page — GL's live nav already points Enterprise at /enterprise */
+  .nav-link[aria-current="page"] {
+    color: var(--primary-main);
+    font-weight: 600;
+    position: relative;
+  }
+  .nav-link[aria-current="page"]::after {
+    content: "";
+    position: absolute;
+    left: 14px; right: 14px; bottom: 0;
+    height: 2px;
+    background: var(--primary-main);
+    border-radius: 2px 2px 0 0;
+  }
+}
+
+.programs-pill {
+  display: inline-flex;
+  white-space: nowrap;
+  flex: none;
+  align-items: center;
+  gap: 10px;
+  height: 40px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: var(--r-sm);
+  background: var(--primary-main);
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 160ms var(--ease-out), transform 120ms var(--ease-out);
+}
+.programs-pill:hover { background: var(--primary-dark); }
+.programs-pill:active { transform: scale(0.97); }
+.programs-pill .chev {
+  width: 8px; height: 8px;
+  border-right: 2px solid currentColor;
+  border-top: 2px solid currentColor;
+  transform: rotate(135deg);
+  margin-top: -3px;
+}
+
+.header-right { margin-left: auto; display: flex; align-items: center; gap: 10px; }
+
+/* The Programs pill appears in the desktop nav row above 1120px and beside the
+   hamburger below it, matching the live GL header on both. */
+.programs-pill-mobile { display: inline-flex; }
+@media (min-width: 1120px) { .programs-pill-mobile { display: none; } }
+@media (max-width: 400px) { .programs-pill-mobile { padding: 0 12px; font-size: 0.8125rem; } }
+
+.login-chip {
+  display: none;
+  white-space: nowrap;
+  flex: none;
+  align-items: center;
+  height: 36px;
+  padding: 0 24px;
+  border-radius: var(--r-sm);
+  background: #F8F8F8;
+  color: var(--primary-main);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: box-shadow 160ms var(--ease-out);
+}
+.login-chip:hover { box-shadow: 0 1px 3px rgba(0,0,0,.19); }
+@media (min-width: 1120px) { .login-chip { display: inline-flex; } }
+
+.hamburger {
+  width: 44px; height: 44px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+@media (min-width: 1120px) { .hamburger { display: none; } }
+.hamburger span {
+  width: 22px; height: 2px;
+  background: #212121;
+  border-radius: 2px;
+  transition: transform 260ms var(--ease-out), opacity 160ms var(--ease-out);
+}
+.hamburger[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.hamburger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Mobile drawer */
+.drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-drawer-backdrop);
+  background: rgba(12, 22, 38, .5);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 260ms var(--ease-out), visibility 260ms;
+}
+.drawer-backdrop[data-open="true"] { opacity: 1; visibility: visible; }
+
+.drawer {
+  position: fixed;
+  inset: 0 auto 0 0;
+  width: min(320px, 86vw);
+  z-index: var(--z-drawer);
+  background: var(--bg-paper);
+  transform: translateX(-100%);
+  transition: transform 320ms var(--ease-drawer);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding-bottom: 32px;
+}
+.drawer[data-open="true"] { transform: translateX(0); }
+
+.drawer-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 20px 16px;
+}
+.drawer-close {
+  width: 44px; height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  font-size: 22px;
+  line-height: 1;
+  color: var(--text-secondary);
+  border-radius: var(--r-sm);
+}
+.drawer-close:hover { background: rgba(33,33,33,.05); }
+
+.drawer a {
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 8px 20px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: rgba(0, 0, 0, .72);
+  text-decoration: none;
+}
+.drawer a:hover { background: var(--primary-hover); color: var(--primary-main); }
+.drawer a[aria-current="page"] { color: var(--primary-main); font-weight: 600; }
+.drawer .drawer-sep { margin: 10px 20px; border-top: 1px solid var(--divider); }
+.drawer .drawer-login { color: var(--primary-main); font-weight: 600; }
+
+/* ==========================================================================
+   1 · Hero — standard weight
+   ========================================================================== */
+
+/* The only section that overrides its own weight, and only at the bottom. The
+   switcher below carries 48px of internal padding inside a tinted stage, so it
+   already supplies the breathing room a section's padding normally provides.
+   A full 96px on top of that left roughly 140px of empty white between the
+   stage and the credibility panels, which read as a missing section. */
+.hero { overflow: hidden; padding-bottom: 16px; }
+@media (min-width: 768px) { .hero { padding-bottom: 24px; } }
+.hero-copy { text-align: center; max-width: 760px; margin-inline: auto; }
+.hero h1 { margin-bottom: 20px; }
+.hero-copy > .t-body { color: var(--text-tertiary); font-size: 0.9375rem; }
+.hero h1 { max-width: 16ch; margin-inline: auto; }
+.hero .t-lead { max-width: 44ch; margin-inline: auto; }
+.hero-body { margin-top: 20px; max-width: 58ch; margin-inline: auto; }
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 32px;
+}
+
+/* ==========================================================================
+   Hero layer switcher
+
+   Structure mirrors the reference implementation:
+   - one tinted stage holding a white content card
+   - every panel occupies the SAME grid cell and crossfades, so the stage never
+     changes height between layers
+   - inactive panels carry inert, which removes them from focus and AT
+   - the background is one wide track that slides sideways per layer rather than
+     swapping images
+   - the active tab merges into the card below through a gooey SVG filter
+   All shapes, icons and patterns are original.
+   ========================================================================== */
+
+.switcher {
+  position: relative;
+  isolation: isolate;
+  margin: 56px auto 0;
+  max-width: 1120px;
+  padding: 26px 20px 30px;
+  border-radius: 32px;
+  background: #E9EDF3;
+  overflow: hidden;
+}
+@media (min-width: 860px) { .switcher { padding: 40px 30px 48px; } }
+
+/* --- Sliding background track --- */
+.switch-bg { position: absolute; inset: 0; z-index: -1; overflow: hidden; }
+.switch-track {
+  position: absolute;
+  inset: 0;
+  width: 300%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  transform: translateX(0);
+  transition: transform var(--dur-feature) var(--ease-feature);
+}
+.switcher[data-active="2"] .switch-track { transform: translateX(-33.3333%); }
+.switcher[data-active="3"] .switch-track { transform: translateX(-66.6666%); }
+
+/* Each zone is an aurora led by that layer's own hue, matching the washes the
+   same three layers carry down in section 3. The white panel covers the middle
+   of this surface, so the light is struck from the corners and edges where it
+   is actually visible, not from the centre where the reference puts it. Two
+   sheets drift at different speeds and in opposite directions, which is what
+   keeps it reading as light rather than as a static gradient. The sheets are
+   always scaled past 1, so the drift never exposes an uncovered edge, and the
+   zone clips them so one zone never bleeds into the next. */
+.zone { position: relative; overflow: hidden; }
+.zone::before,
+.zone::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translate3d(0, 0, 0) scale(1.1);
+}
+.zone::before { animation: aurora-drift-a 34s ease-in-out infinite alternate; }
+.zone::after  { animation: aurora-drift-b 27s ease-in-out infinite alternate; }
+
+@keyframes aurora-drift-a {
+  from { transform: translate3d(-2.5%, -1.5%, 0) scale(1.09); }
+  to   { transform: translate3d(2.5%, 1.5%, 0) scale(1.19); }
+}
+@keyframes aurora-drift-b {
+  from { transform: translate3d(2.5%, 2%, 0) scale(1.17); }
+  to   { transform: translate3d(-2.5%, -2%, 0) scale(1.09); }
+}
+
+/* Sheet one carries the lead hue and its neighbour. Sheet two adds the third
+   hue plus a white bloom, which is what gives the light somewhere to come from
+   instead of reading as three tinted corners. */
+.zone-1::before {
+  background:
+    radial-gradient(58% 50% at 6% 4%, rgba(25,106,229,.44), transparent 72%),
+    radial-gradient(54% 46% at 98% 28%, rgba(101,92,214,.34), transparent 72%),
+    radial-gradient(62% 48% at 26% 102%, rgba(25,106,229,.36), transparent 72%);
+}
+.zone-1::after {
+  background:
+    radial-gradient(48% 40% at 74% 100%, rgba(14,160,178,.30), transparent 72%),
+    radial-gradient(54% 42% at 54% -4%, rgba(255,255,255,.72), transparent 70%);
+}
+.zone-2::before {
+  background:
+    radial-gradient(58% 50% at 4% 24%, rgba(14,160,178,.42), transparent 72%),
+    radial-gradient(56% 46% at 62% -2%, rgba(25,106,229,.38), transparent 72%),
+    radial-gradient(60% 48% at 96% 96%, rgba(14,160,178,.34), transparent 72%);
+}
+.zone-2::after {
+  background:
+    radial-gradient(48% 40% at 20% 102%, rgba(101,92,214,.26), transparent 72%),
+    radial-gradient(54% 42% at 92% 2%, rgba(255,255,255,.72), transparent 70%);
+}
+.zone-3::before {
+  background:
+    radial-gradient(58% 50% at 96% 6%, rgba(101,92,214,.42), transparent 72%),
+    radial-gradient(56% 46% at 30% 2%, rgba(25,106,229,.32), transparent 72%),
+    radial-gradient(62% 48% at 10% 98%, rgba(101,92,214,.36), transparent 72%);
+}
+.zone-3::after {
+  background:
+    radial-gradient(48% 40% at 78% 100%, rgba(14,160,178,.24), transparent 72%),
+    radial-gradient(54% 42% at 52% -2%, rgba(255,255,255,.72), transparent 70%);
+}
+
+/* --- Tab strip --- */
+.switch-tabs-wrap { display: flex; justify-content: center; }
+.switch-tabs {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  max-width: 100%;
+  /* No overflow here. overflow-x also clips vertically, which cut the goo tail
+     off at the bottom edge of the strip. */
+  padding: 2px;
+}
+
+.switch-tab {
+  position: relative;
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  color: var(--text-secondary);
+  transition: color 200ms var(--ease-out), transform 120ms var(--ease-out);
+}
+/* A resting chip under every tab. Without it the two unselected tabs were bare
+   text on the aurora and read as labels rather than controls; only the selected
+   one had a surface, which is backwards. The selected tab hides this and takes
+   the goo blob instead. */
+.switch-tab::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, .26);
+  border: 1px solid rgba(255, 255, 255, .42);
+  transition: background-color 200ms var(--ease-out), border-color 200ms var(--ease-out), opacity 200ms var(--ease-out);
+}
+.switch-tab[aria-selected="true"]::before { opacity: 0; }
+.switch-tab:active { transform: scale(0.985); }
+@media (hover: hover) and (pointer: fine) {
+  .switch-tab:hover { color: var(--text-primary); }
+  .switch-tab:hover::before { background: rgba(255, 255, 255, .62); border-color: rgba(255, 255, 255, .85); }
+}
+.switch-tab[aria-selected="true"] { color: var(--primary-dark); }
+
+/* Gooey backdrop. The blob and the tail are separate shapes; the filter
+   blurs then pushes alpha so they fuse into one silhouette that reaches down
+   into the card. */
+.tab-goo {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0;
+  filter: url(#glGoo);
+  transition: opacity var(--dur-feature) var(--ease-feature);
+}
+.switch-tab[aria-selected="true"] .tab-goo { opacity: 1; }
+.goo-blob {
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  background: var(--bg-paper);
+}
+.goo-tail {
+  position: absolute;
+  left: 50%;
+  top: calc(100% - 10px);
+  width: 34px;
+  height: 34px;
+  transform: translateX(-50%);
+  border-radius: 12px;
+  background: var(--bg-paper);
+}
+
+/* Auto advance progress ring.
+   pathLength normalises the rect outline to 100 units whatever the tab's real
+   width, so one dash animation fits every tab without measuring anything. */
+.tab-progress {
+  position: absolute;
+  inset: 0;
+  /* An SVG with no explicit height falls back to its 150px intrinsic size, which
+     made the ring box far taller than the tab. Size it explicitly. */
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  overflow: visible;
+  opacity: 0;
+  transition: opacity 200ms var(--ease-out);
+}
+.tab-progress path {
+  fill: none;
+  stroke: var(--primary-main);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+}
+@keyframes tabProgress { from { stroke-dashoffset: 100; } to { stroke-dashoffset: 0; } }
+
+.switcher[data-auto="running"] .switch-tab[aria-selected="true"] .tab-progress,
+.switcher[data-auto="paused"]  .switch-tab[aria-selected="true"] .tab-progress { opacity: 1; }
+
+.switcher[data-auto="running"] .switch-tab[aria-selected="true"] .tab-progress path,
+.switcher[data-auto="paused"]  .switch-tab[aria-selected="true"] .tab-progress path {
+  animation: tabProgress var(--auto-ms, 6000ms) linear forwards;
+}
+/* Hovering or focusing freezes the ring exactly where the countdown stopped */
+.switcher[data-auto="paused"] .switch-tab[aria-selected="true"] .tab-progress path {
+  animation-play-state: paused;
+}
+.switcher[data-auto="paused"] .switch-tab[aria-selected="true"] .tab-progress path {
+  stroke: var(--primary-light);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tab-progress { display: none; }
+}
+
+.switch-ico {
+  flex: none;
+  width: 34px; height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: rgba(25,106,229,.10);
+  color: var(--primary-main);
+  transition: background-color var(--dur-feature) var(--ease-feature),
+              color var(--dur-feature) var(--ease-feature);
+}
+.switch-ico .ico { width: 19px; height: 19px; }
+.switch-tab[aria-selected="true"] .switch-ico { background: var(--primary-main); color: #fff; }
+
+.switch-tab-txt { display: grid; gap: 1px; text-align: left; }
+.switch-tab-txt b { font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; opacity: .7; }
+.switch-tab-txt i { font-style: normal; font-size: 0.875rem; font-weight: 600; letter-spacing: -0.01em; white-space: nowrap; }
+/* Below 640px the labels drop entirely so all three icons fit on one line.
+   Each tab keeps its aria-label, so the layer is still announced. */
+@media (max-width: 639px) {
+  .switch-tab-txt { display: none; }
+  .switch-tab { padding: 10px; gap: 0; }
+  .switch-tabs { flex-wrap: nowrap; gap: 10px; }
+}
+
+/* --- Content card --- */
+.switch-card {
+  position: relative;
+  z-index: 1;
+  margin-top: 14px;
+  border-radius: 24px;
+  background: var(--bg-paper);
+  padding: 30px 24px;
+  box-shadow: 0 4px 5px rgba(12,22,38,.04), 0 10px 15px rgba(12,22,38,.04), 0 40px 50px rgba(12,22,38,.08);
+}
+@media (min-width: 860px) { .switch-card { padding: 48px; } }
+
+/* Every panel shares one grid cell, so the card height is the tallest panel
+   and never jumps when the layer changes. */
+.switch-stage { display: grid; }
+.switch-panel {
+  grid-column: 1;
+  grid-row: 1;
+  display: grid;
+  gap: 24px;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--dur-feature) var(--ease-feature);
+}
+.switch-panel:not([inert]) { opacity: 1; pointer-events: auto; }
+@media (min-width: 860px) {
+  .switch-panel { grid-template-columns: 320px minmax(0, 1fr); gap: 56px; }
+}
+
+.switch-name {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.name-text { display: grid; gap: 2px; min-width: 0; }
+.name-kicker {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+.name-title {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  letter-spacing: -0.012em;
+  color: var(--text-primary);
+}
+.name-dot {
+  width: 34px; height: 34px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  background: var(--primary-main);
+  color: #fff;
+  flex: none;
+}
+.name-dot .ico { width: 19px; height: 19px; }
+.switch-badge {
+  padding: 3px 9px;
+  border-radius: var(--r-sm);
+  background: var(--grey-100);
+  color: var(--text-secondary);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.switch-promise {
+  font-size: clamp(1.25rem, 1.05rem + 0.9vw, 1.625rem);
+  font-weight: 600;
+  line-height: 1.22;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+.switch-aud { font-size: 0.9375rem; line-height: 1.6; color: var(--text-secondary); }
+
+.switch-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+  padding-bottom: 2px;
+  border-bottom: 1.5px solid currentColor;
+  color: var(--primary-main);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 150ms var(--ease-out);
+}
+.switch-link:hover { color: var(--primary-dark); }
+/* Grows the tap target to 46px tall without shifting the underline, which
+   padding on the link itself would have dragged away from the text. */
+.switch-link::before { content: ""; position: absolute; inset: -9px -10px; }
+.switch-link .arr { transition: transform 200ms var(--ease-out); }
+.switch-link:hover .arr { transform: translateX(4px); }
+
+.switch-media {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  background: var(--bg-wash);
+}
+.switch-media img { width: 100%; aspect-ratio: 516 / 333; object-fit: cover; display: block; }
+
+.goo-def { position: absolute; width: 0; height: 0; pointer-events: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .switch-track, .switch-panel, .tab-goo { transition: none; }
+  .zone::before, .zone::after { animation: none; }
+}
+
+/* ==========================================================================
+   2 · Credibility band — band weight. No headline, no kicker.
+   Three panels: the claim and the enterprises that back it, then the
+   curriculum partners and the scale numbers side by side beneath.
+   ========================================================================== */
+
+/* No section rules. The panels carry their own edges, so a border across the
+   section as well would draw a line nothing sits against. */
+.band-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+}
+.band-panel {
+  grid-column: 1 / -1;
+  min-width: 0;
+  background: var(--bg-paper);
+  border: 1px solid var(--divider);
+  border-radius: var(--r-panel);
+}
+
+/* An even split. Both panels now carry a single row, so neither needs the
+   larger share and the pair reads as one balanced row. */
+@media (min-width: 880px) {
+  .band-grid { gap: 20px; }
+  .band-unis    { grid-column: span 6; }
+  .band-figures { grid-column: span 6; }
+}
+
+/* --- Lead panel: the claim plus the marquee --- */
+/* No horizontal padding on the panel itself. The marquee runs the full inner
+   width so its fade mask does the edge work; the title pads itself instead. */
+.band-lead { padding-block: 32px; }
+@media (min-width: 768px) { .band-lead { padding-block: 40px 44px; } }
+
+.band-title {
+  text-align: center;
+  padding-inline: 24px;
+  font-size: clamp(1.375rem, 1.15rem + 1.05vw, 1.875rem);
+  font-weight: 600;
+  letter-spacing: -0.022em;
+  line-height: 1.25;
+  margin-bottom: 26px;
+  text-wrap: balance;
+}
+@media (min-width: 768px) { .band-title { margin-bottom: 34px; } }
+
+/* --- The enterprise marquee --- */
+.logo-marquee {
+  width: 100%;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
+          mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
+}
+/* The spacing lives entirely inside each set, as a gap between items plus a
+   trailing pad after the last one, and the track itself has none. That is what
+   makes a half translate exact: the track is two identical sets and nothing
+   else, so moving it by half moves it by exactly one set. A gap on the track
+   instead would move it by one set plus only half that gap, and the row would
+   jump by the other half on every loop. */
+.logo-track { display: flex; gap: 0; width: max-content; animation: logoMarquee 40s linear infinite; }
+.logo-set { display: flex; align-items: center; gap: 44px; padding-right: 44px; }
+/* An identical slot per logo. Normalising on height alone would make a wide
+   logotype huge and a square crest tiny; a fixed box evens the optical weight
+   and keeps the loop arithmetic simple. */
+.logo-set li { display: flex; align-items: center; justify-content: center; width: 142px; height: 44px; flex: none; }
+@keyframes logoMarquee { to { transform: translateX(-50%); } }
+/* The duration sets the loop, not the speed, so a longer set has to take
+   proportionally longer or it races. Twenty-two logos at 142px plus a 44px gap
+   apiece make a 4,092px set; 110s holds ~37px per second. */
+.band-marquee .logo-track { animation-duration: 110s; }
+
+/* Wider, shorter slots than the enterprise row. These are lockups with a
+   university name set small inside them, not wordmarks, so they need width
+   before they need height: the widest reads about 21px tall at 168px across
+   against 16px in the old grid. Six slots at 168px plus a 40px gap apiece make
+   a 1,248px set, so 34s holds the same ~37px per second. */
+.uni-marquee .logo-set { gap: 40px; padding-right: 40px; }
+.uni-marquee .logo-set li { width: 168px; height: 48px; }
+.uni-marquee .logo-track { animation-duration: 34s; }
+
+/* Full colour, at full strength, with no hover behaviour: a partner mark is
+   either worth showing or it is not, and greying it out said neither. */
+.logo-track img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; }
+
+/* No motion: drop the loop and let the row scroll by hand instead. */
+@media (prefers-reduced-motion: reduce) {
+  .logo-track { animation: none; }
+  .logo-marquee { overflow-x: auto; }
+}
+
+/* --- Curriculum partners panel --- */
+.band-unis { padding: 24px; }
+@media (min-width: 768px) { .band-unis { padding: 28px; } }
+
+/* Left aligned and in body ink rather than a tracked grey eyebrow. It is the
+   one label in this band, so it can name the set plainly instead of whispering
+   it in small caps above six crests. Ink, not brand blue: blue reads as a link
+   on a label that is not one, and the six marks below carry enough colour. */
+.logo-label {
+  margin-bottom: 18px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+}
+
+/* --- Stats panel --- */
+/* Three equal thirds divided by hairlines, centred in their panel so the set
+   reads as one unit rather than three things pushed to one side. */
+.band-figures {
+  display: grid;
+  align-content: center;
+  padding: 32px 16px;
+}
+@media (min-width: 768px) { .band-figures { padding: 40px 24px; } }
+.band-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  width: 100%;
+  max-width: 620px;
+  margin-inline: auto;
+}
+.band-stats li + li { border-left: 1px solid var(--divider); }
+.band-stats li { display: grid; gap: 6px; justify-items: center; text-align: center; padding-inline: 10px; }
+@media (min-width: 560px) { .band-stats li { padding-inline: 24px; } }
+.band-stats b {
+  font-size: clamp(1.375rem, 1.15rem + 0.7vw, 1.75rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  line-height: 1.1;
+}
+/* Title case, written as title case in the markup rather than transformed, so
+   what a screen reader announces is what the page shows. */
+.band-stats span {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+/* ==========================================================================
+   3 · The three layers — full spread. The strongest asset on the page.
+
+   An expanding card deck. The resting card shows its title and opening line;
+   the active card widens and reveals the full copy plus the covered topics.
+   Width animates rather than height, so the row never jumps vertically. Each
+   layer carries its own colour wash that deepens as it becomes active.
+   ========================================================================== */
+
+.deck { display: flex; flex-direction: column; gap: 16px; }
+/* While the deck measures each state, suppress transitions so the pass is
+   instant and never visible. */
+.deck[data-measuring] *, .deck[data-measuring] { transition: none !important; animation: none !important; }
+
+@media (min-width: 960px) {
+  .deck { flex-direction: row; align-items: stretch; justify-content: center; gap: 0; }
+}
+
+.deck-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: var(--r-panel);
+  background: var(--bg-paper);
+  border: 1px solid var(--divider);
+  transition: box-shadow 180ms ease-in-out, border-color 180ms ease-in-out;
+}
+@media (min-width: 960px) {
+  .deck-card {
+    flex: none;
+    min-width: 0;
+    width: 264px;
+    border: 0;
+    transition: width 500ms ease-in-out, box-shadow 180ms ease-in-out;
+  }
+  .deck-card[data-state="active"] {
+    width: 408px;
+    box-shadow: 0 20px 48px -12px rgba(11, 53, 88, .16);
+  }
+}
+
+/* --- Colour wash. Sits behind the content and deepens on the active card. --- */
+.deck-wash {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: .35;
+  transition: opacity 520ms var(--ease-feature);
+}
+.deck-card[data-state="active"] .deck-wash { opacity: 1; }
+
+.deck-card[data-layer="1"] .deck-wash {
+  background:
+    radial-gradient(120% 70% at 20% 100%, rgba(25, 106, 229, .26), transparent 70%),
+    linear-gradient(to top, rgba(25, 106, 229, .16), transparent 62%);
+}
+.deck-card[data-layer="2"] .deck-wash {
+  background:
+    radial-gradient(120% 70% at 80% 100%, rgba(14, 160, 178, .26), transparent 70%),
+    linear-gradient(to top, rgba(14, 160, 178, .16), transparent 62%);
+}
+.deck-card[data-layer="3"] .deck-wash {
+  background:
+    radial-gradient(120% 70% at 50% 100%, rgba(101, 92, 214, .26), transparent 70%),
+    linear-gradient(to top, rgba(101, 92, 214, .16), transparent 62%);
+}
+
+/* --- Resting texture. A closed card shows a title and one summary line, which
+       left the lower two thirds of the 420px deck blank. Each layer carries its
+       own texture there, anchored to the bottom and masked out toward the top so
+       it never becomes a hard edge. It clears as the card opens, so it is never
+       behind body copy. Only desktop needs it; below 960px a closed card is a
+       short bar with no void to fill. --- */
+@media (min-width: 960px) {
+  .deck-card::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 70%;
+    z-index: 0;
+    -webkit-mask-image: linear-gradient(to top, #000 6%, transparent 94%);
+            mask-image: linear-gradient(to top, #000 6%, transparent 94%);
+    transition: opacity 300ms var(--ease-out);
+  }
+  .deck-card[data-state="active"]::before { opacity: 0; }
+
+  /* Waves, for the layer about fluency. Two lines half a period out of phase
+     inside one tile, so the rows alternate instead of stacking into a corduroy.
+     CSS gradients cannot draw a curve, so this one is a tiled SVG, inlined for
+     the same reason the icons are. */
+  .deck-card[data-layer="1"]::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='70' height='48' viewBox='0 0 70 48'%3E%3Cg fill='none' stroke='%23196AE5' stroke-opacity='.34' stroke-width='1.2'%3E%3Cpath d='M0 12 Q 17.5 3 35 12 T 70 12'/%3E%3Cpath d='M0 36 Q 17.5 45 35 36 T 70 36'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 70px 48px;
+  }
+  /* Dot field. Teal reads lighter than the blue at the same alpha, so it carries
+     a little more. */
+  .deck-card[data-layer="2"]::before {
+    background-image: radial-gradient(circle, rgba(14,160,178,.38) 1.5px, transparent 1.6px);
+    background-size: 20px 20px;
+  }
+  /* Contours, struck from a point below the card so they arc across it */
+  .deck-card[data-layer="3"]::before {
+    background-image: repeating-radial-gradient(circle at 50% 124%, rgba(101,92,214,.30) 0 1px, transparent 1px 17px);
+  }
+}
+
+/* --- Trigger. Position static so its overlay resolves against the card and
+       the whole card becomes clickable, while body text stays selectable. --- */
+.deck-trigger {
+  position: static;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 26px 26px 0;
+  border: 0;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+  color: inherit;
+}
+.deck-trigger::after { content: ""; position: absolute; inset: 0; z-index: 1; }
+.deck-trigger:focus-visible { outline: none; }
+.deck-trigger:focus-visible::after {
+  outline: 2px solid var(--primary-main);
+  outline-offset: -3px;
+  border-radius: var(--r-panel);
+}
+
+/* The summary collapses instead of disappearing. Animating grid-template-rows
+   between 1fr and 0fr is the one reliable way to transition to auto height; the
+   child clips itself, and the top margin closes alongside so no gap is left. */
+.deck-lead-wrap {
+  display: grid;
+  grid-template-rows: 1fr;
+  margin-top: 10px;
+  opacity: 1;
+  transition: grid-template-rows 280ms var(--ease-out),
+              margin-top 280ms var(--ease-out),
+              opacity 180ms var(--ease-out) 60ms;
+}
+.deck-lead-wrap > * { overflow: hidden; min-height: 0; }
+
+.deck-card[data-state="active"] .deck-lead-wrap {
+  grid-template-rows: 0fr;
+  margin-top: 0;
+  opacity: 0;
+  /* Closing the copy should not linger, so the fade leads the collapse. */
+  transition: grid-template-rows 280ms var(--ease-out),
+              margin-top 280ms var(--ease-out),
+              opacity 120ms var(--ease-out);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .deck-lead-wrap,
+  .deck-card[data-state="active"] .deck-lead-wrap { transition: opacity 120ms linear; }
+}
+
+.deck-trigger > * { width: 100%; }
+@media (min-width: 960px) {
+  /* 264px card less 52px padding. Held constant so the resting copy never
+     re-wraps as the card widens. */
+  .deck-trigger > * { width: 212px; }
+}
+
+.deck-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.deck-ico {
+  flex: none;
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: rgba(25, 106, 229, .10);
+  color: var(--primary-main);
+}
+.deck-ico .ico { width: 18px; height: 18px; }
+
+.deck-title {
+  font-size: 1.375rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: var(--text-primary);
+}
+.deck-lead {
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--text-secondary);
+}
+
+
+.deck-body {
+  position: relative;
+  z-index: 2;
+  padding: 16px 24px 26px;
+}
+.deck-body > * { width: 100%; }
+@media (min-width: 960px) {
+  /* 408px card less 52px padding, fixed for the same reason. While the card is
+     narrow this simply overflows and is clipped. */
+  .deck-body > * { width: 356px; }
+  /* Kept in flow when closed so the row height never changes; visibility also
+     takes it out of the accessibility tree. */
+  .deck-card[data-state="resting"] .deck-body { visibility: hidden; transition: visibility 0s linear 140ms; }
+  .deck-card[data-state="active"] .deck-body { visibility: visible; transition: visibility 0s; }
+}
+@media (max-width: 959px) {
+  .deck-card[data-state="resting"] .deck-body { display: none; }
+}
+
+/* Single CTA under the section subhead */
+.section-cta { margin-top: 28px; }
+.deck-copy {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin-bottom: 18px;
+}
+
+/* Desktop only: the row is width-driven and its height is locked to the tallest
+   card, so the rhythm is tightened here to bring that lock down. Mobile keeps
+   the roomier spacing below. */
+@media (min-width: 960px) {
+  .deck-trigger { padding: 19px 26px 0; }
+  .deck-lead-wrap { margin-top: 8px; }
+  .deck-body { padding: 12px 26px 14px; }
+  .deck-copy { margin-bottom: 14px; line-height: 1.55; }
+  .deck-body .covers-label { margin-bottom: 8px; }
+  .deck-body .chip-list { gap: 6px; }
+  .deck-body .chip { padding: 4px 10px; }
+}
+.deck-body .covers-label { margin-bottom: 10px; }
+
+/* --- Reveal --------------------------------------------------------------
+   The card's width is what moves; the text does not. Both text columns are a
+   fixed width inside an overflow-hidden card, so nothing re-wraps while the
+   card grows, and the copy is simply uncovered rather than reflowed.
+
+   Transitions rather than keyframes, so clicking between cards mid-animation
+   retargets instead of restarting. Opacity only, since the card is already
+   moving horizontally and a second vertical motion fights it. A little blur
+   softens the edge of the reveal. Exit is faster than enter and has no delay.
+   ------------------------------------------------------------------------- */
+.deck-body > * {
+  opacity: 0;
+  filter: blur(2px);
+  transition: opacity 120ms var(--ease-out), filter 120ms var(--ease-out);
+}
+.deck-card[data-state="active"] .deck-body > * {
+  opacity: 1;
+  filter: blur(0);
+  transition: opacity 200ms var(--ease-out) 140ms, filter 200ms var(--ease-out) 140ms;
+}
+.deck-card[data-state="active"] .deck-body > *:nth-child(2) { transition-delay: 180ms; }
+.deck-card[data-state="active"] .deck-body > *:nth-child(3) { transition-delay: 220ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  .deck-body > *,
+  .deck-card[data-state="active"] .deck-body > * {
+    filter: none;
+    transition: opacity 120ms linear;
+    transition-delay: 0ms;
+  }
+}
+
+/* --- Joint between cards ---------------------------------------------------
+   A bridge in the card colour with two circular bites taken out of its top and
+   bottom, leaving an inward arc at each end.
+
+   The bites are a mask, not painted circles. Painting section-coloured discs on
+   top only looks like a hole where the backdrop happens to be exactly that
+   colour; over the card wash or the active card's shadow they read as solid
+   grey discs instead. A mask removes the pixels, so whatever sits behind shows
+   through. It also needs no overflow clipping, which was flattening the tops of
+   the arcs.
+   -------------------------------------------------------------------------- */
+.deck-joint { display: none; }
+@media (min-width: 960px) {
+  .deck-joint {
+    position: relative;
+    display: block;
+    width: 28px;
+    flex: none;
+  }
+  .joint-piece {
+    /* Circle centres sit 1px outside each end, so a 15px radius reaches 14px in
+       at the middle and tapers to nothing at the corners. */
+    --bite-top: radial-gradient(circle 15px at 50% -1px, #0000 15px, #000 15.5px);
+    --bite-bottom: radial-gradient(circle 15px at 50% calc(100% + 1px), #0000 15px, #000 15.5px);
+
+    position: absolute;
+    top: 10%;
+    left: 0;
+    right: 0;
+    height: 48px;
+    background: var(--bg-paper);
+
+    -webkit-mask-image: var(--bite-top), var(--bite-bottom);
+            mask-image: var(--bite-top), var(--bite-bottom);
+    -webkit-mask-composite: source-in;
+            mask-composite: intersect;
+  }
+}
+
+/* Sub-block: every layer starts with your business.
+
+   One panel holding all three, not three cards. The deck directly above has
+   already spent this section's card budget; repeating that rhythm immediately
+   below would read as a second deck and flatten the hierarchy. A single panel
+   keeps these three as the supporting note they are.
+
+   The panel borrows the hero's aurora at roughly half intensity, so the two
+   surfaces clearly belong to each other without this one competing. The light is
+   deliberately not aligned to the columns: these three are priorities, use cases,
+   and a sandbox, not the three layers, so tinting a column per layer hue would
+   claim a mapping that does not exist. The panel also closes the empty space the
+   old layout left below the copy, since it now sizes to its content. */
+.sub-block { margin-top: 72px; }
+.sub-block > h3 { margin-bottom: 28px; text-align: center; }
+
+.pillars,
+.options {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  gap: 30px;
+  padding: 30px 24px 48px;
+  border-radius: var(--r-panel);
+  background: var(--bg-paper);
+  box-shadow: 0 1px 2px rgba(11, 53, 88, .04), 0 18px 40px -22px rgba(11, 53, 88, .18);
+}
+/* Two drifting sheets, sharing the hero's keyframes. They sit above the panel's
+   own background, so the copy has to be lifted above them in turn. */
+.pillars::before,
+.pillars::after,
+.options::before,
+.options::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  transform: translate3d(0, 0, 0) scale(1.1);
+}
+.pillars::before,
+.options::before {
+  /* Alphas are capped by contrast, not by taste. On mobile the three pillars
+     stack and the last paragraph sits over the densest part of the wash. Compose
+     all three gradients at full strength over white, which is darker than any
+     real pixel since their peaks never coincide, and body copy at
+     rgba(33,33,33,.72) still lands at 4.74:1. Raising these fails AA. */
+  background:
+    radial-gradient(64% 94% at -2% 118%, rgba(25,106,229,.17), transparent 72%),
+    radial-gradient(58% 88% at 50% 126%, rgba(14,160,178,.14), transparent 72%),
+    radial-gradient(64% 94% at 102% 114%, rgba(101,92,214,.17), transparent 72%);
+  animation: aurora-drift-a 34s ease-in-out infinite alternate;
+}
+.pillars::after,
+.options::after {
+  background:
+    radial-gradient(52% 62% at 28% -14%, rgba(255,255,255,.72), transparent 70%),
+    radial-gradient(54% 64% at 82% -12%, rgba(25,106,229,.10), transparent 72%);
+  animation: aurora-drift-b 27s ease-in-out infinite alternate;
+}
+
+.pillar,
+.option { position: relative; z-index: 1; }
+.pillar h4,
+.option h4 { font-size: 1.0625rem; font-weight: 600; margin-bottom: 10px; letter-spacing: -0.012em; }
+
+@media (min-width: 900px) {
+  .pillars,
+  .options {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    padding: 52px 14px 60px;
+    border-radius: var(--r-xl);
+  }
+  /* Hairlines between the columns replace the three heavy blue rules above each
+     heading. The rules repeated one loud graphic three times and carried no
+     information; a divider at least says where one column ends. */
+  .pillar,
+  .option { padding: 0 32px; }
+  .pillar + .pillar,
+  .option + .option { border-left: 1px solid rgba(11, 53, 88, .11); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pillars::before, .pillars::after,
+  .options::before, .options::after { animation: none; }
+}
+
+.covers-label {
+  margin-bottom: 14px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+/* ==========================================================================
+   4 · Our commitments — standard. Deliberately NOT cards and NOT numbered
+   scaffolding: three parallel claims, so ruled columns rather than 01/02/03.
+   ========================================================================== */
+
+/* Feature accordion. One commitment open at a time beside a panel that
+   illustrates it, replacing three equal columns under three equal rules.
+
+   The rail under each heading does two jobs: it separates the items, and on the
+   open item it runs as the auto-advance progress bar. That is the same mechanic
+   as the hero tab ring, driven by the same --auto-ms, so the page has one idea
+   about how automatic rotation announces itself rather than two.
+
+   The reference dims its closed items to 40% opacity. Copied literally that puts
+   the closed headings at roughly 2.3:1, well under AA, so the hierarchy here is
+   carried by text colour instead: closed headings sit at --text-secondary
+   (6.3:1) and the open one at --text-primary. */
+.features {
+  display: grid;
+  gap: 32px;
+  grid-template-areas: "head" "media" "list";
+}
+@media (min-width: 1000px) {
+  .features {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-areas:
+      "media head"
+      "media list";
+    grid-template-rows: auto auto;
+    column-gap: 64px;
+    row-gap: 28px;
+    align-items: start;
+  }
+}
+
+.feat-head { grid-area: head; margin: 0; max-width: none; }
+.feat-head .t-lead { margin-inline: 0; }
+.feat-list { grid-area: list; }
+/* The panel takes its height from the head and the list rather than the other
+   way round, so there is no dead space between the copy and the first item.
+   The list is still locked in JS to its tallest state, otherwise opening a
+   longer item would resize the panel beside it. */
+.features[data-measuring] .feat-panel,
+.features[data-measuring] .feat-panel-in > * { transition: none; }
+
+/* --- Media panel --- */
+.feat-media {
+  grid-area: media;
+  position: relative;
+  overflow: hidden;
+  /* Stacked above the list, a square panel ran to the full column width and
+     pushed the items far down the page, so it is a fixed band instead. */
+  height: 240px;
+  border-radius: var(--r-panel);
+  background: var(--bg-paper);
+  box-shadow: 0 1px 2px rgba(11, 53, 88, .04), 0 24px 56px -28px rgba(11, 53, 88, .22);
+}
+@media (min-width: 1000px) {
+  .feat-media {
+    /* Height comes from the column beside it, so the panel is whatever shape
+       the copy makes it. A photograph crops to fit; the drawn scenes scale. */
+    height: auto;
+    align-self: stretch;
+    min-height: 400px;
+    border-radius: var(--r-xl);
+  }
+}
+
+/* Nothing sits over this one, so the wash can carry more than the pillars' can. */
+.feat-wash {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(62% 66% at 8% 4%, rgba(25,106,229,.26), transparent 72%),
+    radial-gradient(58% 62% at 98% 22%, rgba(101,92,214,.20), transparent 72%),
+    radial-gradient(64% 68% at 32% 104%, rgba(14,160,178,.22), transparent 72%),
+    radial-gradient(52% 56% at 84% 96%, rgba(25,106,229,.18), transparent 72%);
+  transform: translate3d(0, 0, 0) scale(1.1);
+  animation: aurora-drift-a 34s ease-in-out infinite alternate;
+}
+
+/* The three photographs share one cell and crossfade, so the panel never
+   resizes. They are decorative, hence aria-hidden on the panel and no inert
+   here. The exit is faster than the entrance and both carry a little blur, so
+   the swap reads as one image resolving rather than two images overlapping. */
+.feat-scene {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: scale(.97);
+  filter: blur(3px);
+  transition: opacity 200ms var(--ease-out), transform 200ms var(--ease-out), filter 200ms var(--ease-out);
+}
+.feat-scene img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.features[data-active="1"] .feat-scene[data-scene="1"],
+.features[data-active="2"] .feat-scene[data-scene="2"],
+.features[data-active="3"] .feat-scene[data-scene="3"] {
+  opacity: 1;
+  transform: scale(1);
+  filter: blur(0);
+  transition: opacity 320ms var(--ease-out) 60ms, transform 420ms var(--ease-out) 60ms, filter 320ms var(--ease-out) 60ms;
+}
+
+/* --- Items --- */
+.feat-item { position: relative; padding-block: 20px; }
+.feat-h { margin: 0; }
+.feat-trigger {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  /* Padding out and margin back in: the hit area grows to 48px without moving
+     anything, so the whole row is tappable rather than just the text. */
+  padding: 12px 0;
+  margin: -12px 0;
+  border: 0;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+  color: var(--text-secondary);
+  transition: color 180ms var(--ease-out);
+}
+.feat-item[data-state="active"] .feat-trigger { color: var(--text-primary); cursor: default; }
+.feat-trigger:hover { color: var(--text-primary); }
+.feat-trigger:focus-visible { outline: 2px solid var(--primary-main); outline-offset: 4px; border-radius: 4px; }
+
+.feat-ico { flex: none; width: 24px; height: 24px; color: inherit; transition: color 180ms var(--ease-out); }
+.feat-ico .ico { width: 100%; height: 100%; }
+.feat-item[data-state="active"] .feat-ico { color: var(--primary-main); }
+
+.feat-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -0.014em;
+  color: inherit;
+}
+
+/* Same grid-rows trick the card deck uses: the one reliable way to transition
+   a panel to auto height. */
+.feat-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 300ms var(--ease-out);
+}
+.feat-panel-in { overflow: hidden; min-height: 0; }
+.feat-panel-in > * {
+  margin: 0;
+  padding-top: 10px;
+  opacity: 0;
+  filter: blur(2px);
+  transition: opacity 120ms var(--ease-out), filter 120ms var(--ease-out);
+}
+.feat-item[data-state="active"] .feat-panel { grid-template-rows: 1fr; }
+.feat-item[data-state="active"] .feat-panel-in > * {
+  opacity: 1;
+  filter: blur(0);
+  transition: opacity 220ms var(--ease-out) 150ms, filter 220ms var(--ease-out) 150ms;
+}
+
+/* --- Rail. Divider at rest, progress bar while the rotation runs. --- */
+.feat-rail {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  overflow: hidden;
+  background: rgba(33, 33, 33, .10);
+}
+.feat-fill {
+  display: block;
+  height: 100%;
+  background: var(--primary-main);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+}
+/* Fallback for when the rotation never runs, under reduced motion: the bar
+   sits full so it still marks which item is open. */
+.feat-item[data-state="active"] .feat-fill { transform: scaleX(1); }
+.features[data-auto="running"] .feat-item[data-state="active"] .feat-fill {
+  animation: feat-sweep var(--auto-ms, 6000ms) linear forwards;
+}
+@keyframes feat-sweep { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .feat-wash { animation: none; }
+  .feat-scene { transition: opacity 120ms linear; transform: none; filter: none; }
+  .features[data-active="1"] .feat-scene[data-scene="1"],
+  .features[data-active="2"] .feat-scene[data-scene="2"],
+  .features[data-active="3"] .feat-scene[data-scene="3"] { transform: none; filter: none; }
+  .feat-panel { transition: none; }
+  .feat-panel-in > * { transition: none; }
+}
+
+/* ==========================================================================
+   5 · How we measure — full spread. A real sequence, so numbers earn their
+   place here. Sticky head on the left, timeline on the right.
+   ========================================================================== */
+
+/* Dark section weight. Same ink tokens as the closing CTA, so the page has one
+   dark language rather than two, and the same padding rhythm as .s-full. */
+.s-ink { background: var(--ink); color: var(--ink-text); padding-block: 56px; }
+@media (min-width: 768px) { .s-ink { padding-block: 120px; } }
+.s-ink h2, .s-ink h3 { color: var(--ink-text); }
+.s-ink .t-lead { color: var(--ink-text-secondary); }
+.s-ink .kicker { color: var(--primary-light); }
+
+.oc-grid { display: grid; gap: 44px; align-items: start; }
+@media (min-width: 1000px) {
+  .oc-grid { grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); gap: 64px; }
+}
+
+/* --- Left column. The section head styles are scoped to .section-head, which
+       centres and constrains; this head is left aligned and beside a table, so
+       its rhythm is set here rather than fighting that block. --- */
+.oc-head .kicker { margin-bottom: 14px; }
+.oc-head h2 { margin-bottom: 18px; }
+.oc-head .t-lead { margin-top: 0; margin-inline: 0; max-width: 46ch; }
+.oc-notes {
+  margin-top: 40px;
+  padding: 26px 28px;
+  border: 1px solid var(--ink-border);
+  border-radius: var(--r-lg);
+}
+.oc-note + .oc-note { margin-top: 22px; padding-top: 22px; border-top: 1px solid var(--ink-border); }
+.oc-note-body { font-size: 0.9375rem; line-height: 1.65; color: var(--ink-text-secondary); }
+
+/* Tracked caps are this section's label grammar: they mark the table's columns
+   and these two fields, and nothing else. White at .58 over the ink measures
+   6.0:1; anything below about .50 drops under AA at this size. */
+.oc-note-label,
+.oc-thead span {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primary-light);
+}
+.oc-note-label { margin-bottom: 8px; }
+.oc-thead span { color: rgba(255, 255, 255, .58); }
+
+/* --- The schedule --- */
+.oc-table { border: 1px solid var(--ink-border); border-radius: var(--r-lg); overflow: hidden; }
+
+.oc-thead { display: none; }
+@media (min-width: 1000px) {
+  .oc-thead {
+    display: grid;
+    grid-template-columns: 56px 168px minmax(0, 1fr);
+    gap: 20px;
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--ink-border);
+  }
+}
+
+.oc-row {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr);
+  gap: 6px 14px;
+  padding: 20px 22px;
+  align-items: start;
+}
+/* Stacked, the number sits beside the stage name and the description drops
+   underneath it, which keeps the measure readable without a horizontal scroll. */
+.oc-what { grid-column: 2; }
+.oc-row + .oc-row { border-top: 1px solid var(--ink-border); }
+/* Alternating lift, kept faint. The rows are already separated by the rules;
+   this is depth, not a second divider. */
+.oc-row:nth-child(odd) { background: rgba(255, 255, 255, .035); }
+
+@media (min-width: 1000px) {
+  .oc-row {
+    grid-template-columns: 56px 168px minmax(0, 1fr);
+    gap: 20px;
+    padding: 22px 24px;
+    align-items: center;
+  }
+  .oc-what { grid-column: auto; }
+}
+
+.oc-stage {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+  color: var(--primary-light);
+}
+.oc-when { font-size: 1rem; font-weight: 600; color: var(--ink-text); }
+.oc-what { font-size: 0.9375rem; line-height: 1.6; color: var(--ink-text-secondary); }
+
+/* ==========================================================================
+   6 · Proof — light. One quote at a time, chosen from a fanned row of partner
+   tiles below it.
+
+   The reference sets its quote in a display serif. This page is Poppins
+   throughout, which was a brand constraint from the start, so the editorial
+   weight here comes from size and a light weight rather than a second family.
+   Adding a serif for one section would read as a different site.
+   ========================================================================== */
+
+/* Panels share one cell so the section never changes height when the partner
+   changes, the same technique the hero switcher uses. */
+/* One container, so the quote, the attribution and the partner tiles read as a
+   single unit rather than three things stacked on a white page. The section
+   itself is white, so the panel is tinted rather than raised: a white card on a
+   white ground would need a heavy shadow to separate, and the tiles inside are
+   already white cards that need somewhere to sit. */
+.proof-picker {
+  max-width: 1000px;
+  margin-inline: auto;
+  padding: 44px 24px 40px;
+  border-radius: var(--r-panel);
+  background: var(--bg-wash);
+  border: 1px solid var(--divider);
+}
+@media (min-width: 768px) {
+  .proof-picker { padding: 60px 56px 52px; }
+}
+.proof-stage { display: grid; }
+.proof-panel {
+  grid-area: 1 / 1;
+  text-align: center;
+  max-width: 940px;
+  margin-inline: auto;
+  opacity: 0;
+  transform: translateY(6px);
+  filter: blur(3px);
+  transition: opacity 180ms var(--ease-out), transform 180ms var(--ease-out), filter 180ms var(--ease-out);
+}
+.proof-panel:not([inert]) {
+  opacity: 1;
+  transform: none;
+  filter: blur(0);
+  transition: opacity 300ms var(--ease-out) 60ms, transform 380ms var(--ease-out) 60ms, filter 300ms var(--ease-out) 60ms;
+}
+
+.proof-quote {
+  margin: 0 0 22px;
+  font-size: clamp(1.375rem, 1.05rem + 1.55vw, 2.125rem);
+  font-weight: 400;
+  line-height: 1.34;
+  letter-spacing: -0.022em;
+  color: var(--text-primary);
+  text-wrap: balance;
+}
+.proof-cite { font-size: 0.9375rem; color: var(--text-secondary); }
+
+/* --- The fan. Tiles overlap and sit at small alternating angles so the row
+       reads as a stack of cards rather than a toolbar. The selected one
+       straightens, lifts and comes forward. --- */
+.proof-tiles {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 44px;
+  padding-block: 10px;
+}
+.proof-tile {
+  position: relative;
+  /* Five tiles plus their overlap have to fit the phone column. At 84px they
+     needed 396px inside 327px and spilled off the left edge, where the body's
+     overflow-x hidden quietly cut the first one in half. */
+  width: 58px;
+  height: 58px;
+  flex: none;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  opacity: .62;
+  transition: opacity 200ms var(--ease-out), transform 260ms var(--ease-out);
+}
+/* Enough overlap to read as a stack, not so much that the selected tile's
+   growth crowds its neighbours off. */
+.proof-tile + .proof-tile { margin-left: -4px; }
+.proof-tile:nth-child(odd) { transform: rotate(-5deg); }
+.proof-tile:nth-child(even) { transform: rotate(4deg); }
+.proof-tile:hover { opacity: .85; }
+/* Selection is carried by three things at once, not by colour alone: the tile
+   straightens and grows, its face gains a brand border, and it comes forward. */
+.proof-tile[aria-selected="true"] {
+  z-index: 2;
+  opacity: 1;
+  transform: rotate(0deg) scale(1.06);
+}
+.proof-tile:focus-visible { outline: 2px solid var(--primary-main); outline-offset: 4px; border-radius: var(--r-lg); }
+
+.tile-face {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--r-lg);
+  background: var(--bg-paper);
+  border: 1px solid var(--divider);
+  box-shadow: var(--shadow-2);
+  color: var(--text-secondary);
+  transition: border-color 200ms var(--ease-out), color 200ms var(--ease-out), box-shadow 200ms var(--ease-out);
+}
+.tile-mark { width: 27px; height: 27px; }
+@media (min-width: 560px) {
+  .proof-tile { width: 84px; height: 84px; }
+  .proof-tile + .proof-tile { margin-left: -6px; }
+  .tile-mark { width: 38px; height: 38px; }
+}
+.proof-tile[aria-selected="true"] .tile-face {
+  border-color: var(--primary-main);
+  color: var(--primary-main);
+  box-shadow: var(--shadow-4);
+}
+
+/* Shows the rotation is running and how far through it is. Same mechanic and
+   same --auto-ms as the commitments rail, so the page has one way of saying
+   "this is moving on a timer". */
+.auto-bar {
+  width: 96px;
+  height: 3px;
+  margin: 26px auto 0;
+  border-radius: 2px;
+  overflow: hidden;
+  background: var(--divider-strong);
+}
+.auto-bar-fill {
+  display: block;
+  height: 100%;
+  border-radius: 2px;
+  background: var(--primary-main);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+}
+.proof-picker[data-auto="running"] .auto-bar-fill {
+  animation: auto-sweep var(--auto-ms, 7000ms) linear infinite;
+}
+@keyframes auto-sweep { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+/* Nothing is rotating under reduced motion, so the bar would be a lie. */
+@media (prefers-reduced-motion: reduce) { .auto-bar { display: none; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .proof-panel { transition: opacity 120ms linear; transform: none; filter: none; }
+  .proof-panel:not([inert]) { transform: none; filter: none; }
+  .proof-tile { transition: opacity 120ms linear; }
+}
+
+/* ==========================================================================
+   7 · Delivery formats — standard. Rows, not a third identical card grid.
+   ========================================================================== */
+
+/* The light twin of the outcomes schedule. Same idea, same row grammar, same
+   column labels that only exist on the desktop grid. The measurement schedule
+   is the dark one because it carries the section; this one is a reference table
+   the reader scans, so it stays quiet. */
+.format-table {
+  border: 1px solid var(--divider);
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  background: var(--bg-paper);
+}
+
+.format-thead { display: none; }
+@media (min-width: 900px) {
+  .format-thead {
+    display: grid;
+    grid-template-columns: 200px 200px minmax(0, 1fr);
+    gap: 24px;
+    padding: 16px 26px;
+    border-bottom: 1px solid var(--divider);
+  }
+  .format-thead span {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+  }
+}
+
+.format-row {
+  display: grid;
+  gap: 10px;
+  padding: 22px 22px;
+  align-items: start;
+}
+@media (min-width: 900px) {
+  .format-row { grid-template-columns: 200px 200px minmax(0, 1fr); gap: 24px; padding: 26px; }
+}
+.format-row + .format-row { border-top: 1px solid var(--divider); }
+/* Alternating lift, kept faint. The rules already separate the rows; this is
+   depth, not a second divider. It uses the cool wash rather than the page's own
+   grey, so the stripe still reads now that the section is tinted.
+
+   The rows live in their own wrapper so nth-child counts rows and nothing else.
+   Counting them as children of the table made the header row child one and
+   silently shifted the stripe onto the middle row. */
+.format-row:nth-child(odd) { background: var(--bg-wash); }
+
+.format-name { font-size: 1.0625rem; font-weight: 600; letter-spacing: -0.014em; }
+/* A pill rather than blue body text: it is a specification, not a sentence. */
+.format-dur {
+  justify-self: start;
+  padding: 5px 12px;
+  border-radius: var(--r-pill);
+  background: var(--primary-wash);
+  color: var(--primary-dark);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.format-what { font-size: 0.9375rem; line-height: 1.6; color: var(--text-secondary); }
+
+/* ==========================================================================
+   8 · For your role — standard. Tinted cards, each with its own CTA.
+   ========================================================================== */
+
+/* An accordion, one seat open at a time, in the same bordered panel the
+   schedule and format tables use. The image occupies the right half of the whole
+   row, heading included, rather than only the half below it.
+
+   There is no open and close sign, by request. The row still carries a pointer
+   cursor, a hover ground and a focus ring, and aria-expanded still tells
+   assistive technology the state, but a sighted reader has to try a row to learn
+   it opens. */
+.seats {
+  border: 1px solid var(--divider);
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  background: var(--bg-paper);
+}
+/* The media is first in the markup so it can be hoisted out of the collapsing
+   body, but it must read last. A flex column with an explicit order fixes the
+   stacked case; at 760px and up the media is absolute, so it leaves the flow
+   and the order has no effect there. */
+.seat { position: relative; overflow: hidden; display: flex; flex-direction: column; }
+.seat-h { order: 1; }
+.seat-body { order: 2; }
+.seat-media { order: 3; }
+.seat + .seat { border-top: 1px solid var(--divider); }
+
+.seat-h { margin: 0; }
+.seat-trigger {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 22px 24px;
+  border: 0;
+  background: none;
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+  color: var(--text-primary);
+  transition: background-color 160ms var(--ease-out);
+}
+@media (min-width: 760px) {
+  /* The image sits over the right half, so the heading is kept clear of it. */
+  .seat-trigger { padding: 26px 32px; padding-right: calc(50% + 32px); }
+}
+.seat-trigger:hover { background: var(--primary-hover); }
+.seat-trigger:focus-visible { outline: 2px solid var(--primary-main); outline-offset: -3px; }
+.seat-ico { flex: none; width: 24px; height: 24px; color: var(--primary-main); }
+.seat-ico .ico { width: 100%; height: 100%; }
+
+/* Closed rows only. An open row carries no control at all, which is what lets
+   the photograph run the full height and width of its half without anything
+   sitting on top of it. Absolutely placed so it does not take part in the
+   trigger's flex row and cannot push the label around. */
+.seat-chev {
+  position: absolute;
+  right: 22px;
+  top: 50%;
+  width: 20px;
+  height: 20px;
+  transform: translateY(-50%);
+  color: var(--text-secondary);
+  transition: opacity 200ms var(--ease-out);
+}
+.seat-chev svg { width: 100%; height: 100%; display: block; }
+.seat[data-state="active"] .seat-chev { opacity: 0; }
+.seat-label { font-size: 1.0625rem; font-weight: 600; letter-spacing: -0.014em; }
+@media (min-width: 760px) { .seat-label { font-size: 1.1875rem; } }
+
+/* The one reliable way to transition a panel to auto height, used three times
+   on this page now. */
+.seat-body {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 320ms var(--ease-out);
+}
+.seat-body-in { overflow: hidden; min-height: 0; }
+.seat[data-state="active"] .seat-body { grid-template-rows: 1fr; }
+
+/* Indented to the label, so the copy hangs off the same line the heading
+   text starts on rather than the icon. */
+.seat-copy { padding: 0 24px 26px 62px; }
+@media (min-width: 760px) { .seat-copy { padding: 0 32px 34px 70px; padding-right: calc(50% + 32px); } }
+.seat-copy .t-body { margin-bottom: 22px; }
+
+/* The wash shows through while a lazy-loaded photograph is still in flight, so
+   an unloaded row reads as empty rather than broken. */
+.seat-media {
+  display: grid;
+  place-items: center;
+  /* A fixed ratio rather than a minimum height. Stacked, a min-height held the
+     panel at 180px whatever the width, so the crop ran from 1.8:1 on a phone to
+     nearly 2.9:1 on a tablet, which is wide enough to cut heads off. */
+  aspect-ratio: 16 / 10;
+  background: var(--bg-wash);
+  border-top: 1px solid var(--divider);
+  overflow: hidden;
+}
+.seat-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* Stacked, the media is an ordinary block under the copy, and a closed row has
+   to hide it since there is no collapsing container to do that here. */
+.seat[data-state="resting"] .seat-media { display: none; }
+
+@media (min-width: 760px) {
+  /* Absolute, so height 100% tracks the row as it opens and closes and the
+     image reaches the top of the heading. pointer-events none keeps the whole
+     row clickable through it. */
+  .seat-media {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    aspect-ratio: auto;
+    border-top: 0;
+    border-left: 1px solid var(--divider);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 220ms var(--ease-out);
+  }
+  .seat[data-state="resting"] .seat-media { display: grid; }
+  .seat[data-state="active"] .seat-media { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .seat-body { transition: none; }
+  .seat-media { transition: none; }
+}
+
+/* ==========================================================================
+   9 · From our founder — band weight
+   ========================================================================== */
+
+.founder-grid { display: grid; gap: 32px; align-items: center; }
+@media (min-width: 992px) { .founder-grid { grid-template-columns: 1fr 1.15fr; gap: 64px; } }
+
+.video-poster {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  padding: 0;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  background: var(--ink);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+}
+.video-poster::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(120% 90% at 50% 40%, rgba(25,106,229,.34), transparent 70%);
+}
+.play {
+  position: relative;
+  z-index: 1;
+  width: 68px; height: 68px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.96);
+  display: grid;
+  place-items: center;
+  box-shadow: var(--shadow-8);
+  transition: transform 220ms var(--ease-out);
+}
+.play::before {
+  content: "";
+  width: 0; height: 0;
+  margin-left: 4px;
+  border-left: 17px solid var(--ink);
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+}
+@media (hover: hover) and (pointer: fine) {
+  .video-poster:hover .play { transform: scale(1.07); }
+}
+.video-poster:active .play { transform: scale(0.97); }
+
+/* Lightbox — modals stay centre-origin */
+.lightbox {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  width: min(960px, calc(100vw - 32px));
+  max-width: none;
+}
+.lightbox::backdrop { background: rgba(12,22,38,.78); }
+.lightbox-inner {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  background: #000;
+}
+.lightbox iframe { width: 100%; height: 100%; border: 0; }
+.lightbox-close {
+  position: absolute;
+  top: -44px; right: 0;
+  width: 44px; height: 44px;
+  border: 0;
+  background: none;
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+}
+.lightbox[open] { animation: modal-in 220ms var(--ease-out); }
+@keyframes modal-in {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* ==========================================================================
+   10 · FAQ — light weight. Native details, keyboard accessible, no JS.
+   ========================================================================== */
+
+.faq-wrap { max-width: 840px; }
+.faq { border-top: 1px solid var(--divider); }
+.faq summary {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 22px 0;
+  cursor: pointer;
+  list-style: none;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  letter-spacing: -0.012em;
+  transition: color 160ms var(--ease-out);
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary:hover { color: var(--primary-main); }
+.faq-sign {
+  flex: none;
+  position: relative;
+  width: 20px; height: 20px;
+  margin-top: 3px;
+}
+.faq-sign::before, .faq-sign::after {
+  content: "";
+  position: absolute;
+  left: 50%; top: 50%;
+  background: var(--primary-main);
+  border-radius: 2px;
+  transform: translate(-50%, -50%);
+  transition: transform 220ms var(--ease-out), opacity 180ms var(--ease-out);
+}
+.faq-sign::before { width: 14px; height: 2px; }
+.faq-sign::after  { width: 2px; height: 14px; }
+.faq[open] .faq-sign::after { transform: translate(-50%, -50%) rotate(90deg); opacity: 0; }
+.faq-answer { padding: 0 44px 24px 0; }
+
+/* ==========================================================================
+   11 · Get started — terminal weight, ink ground
+   ========================================================================== */
+
+.s-terminal h2, .s-terminal h3 { color: var(--ink-text); }
+.s-terminal .t-lead, .s-terminal .t-body, .s-terminal .t-sm { color: var(--ink-text-secondary); }
+
+/* The ask sits on the left and the form on the right, so the reader meets the
+   reason before the fields. */
+.terminal-grid { display: grid; gap: 40px; align-items: start; }
+@media (min-width: 900px) {
+  .terminal-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: 72px; }
+}
+.terminal-intro .kicker { margin-bottom: 14px; }
+.terminal-intro h2 { margin-bottom: 18px; }
+.terminal-intro .t-lead { margin-top: 0; margin-inline: 0; max-width: 42ch; }
+
+.contact-list { margin-top: 40px; display: flex; flex-direction: column; gap: 18px; }
+.contact-list li { display: flex; align-items: center; gap: 14px; font-size: 0.9375rem; overflow-wrap: anywhere; }
+.contact-ico { flex: none; width: 20px; height: 20px; color: var(--primary-light); }
+.contact-ico svg { width: 100%; height: 100%; display: block; }
+.contact-list a { color: var(--ink-text); text-decoration: none; border-bottom: 1px solid transparent; }
+.contact-list a:hover { border-bottom-color: var(--primary-light); }
+.contact-list a:focus-visible { outline: 2px solid var(--primary-light); outline-offset: 3px; border-radius: 2px; }
+
+/* The card lifts off the ground and the fields recess into it, which is the
+   whole hierarchy: a panel you are being handed, with wells to fill. */
+.form-card {
+  padding: 26px 22px;
+  border: 1px solid var(--ink-border);
+  border-radius: var(--r-xl);
+  background: var(--ink-raised);
+}
+@media (min-width: 640px) { .form-card { padding: 36px 34px; } }
+
+.field-grid { display: grid; gap: 20px; }
+@media (min-width: 640px) { .field-grid { grid-template-columns: 1fr 1fr; } }
+.field-full { grid-column: 1 / -1; }
+
+/* Tracked caps, the same label grammar the schedule and format tables use.
+   White at .62 over the raised card clears AA comfortably at this size. */
+.field label {
+  display: block;
+  margin-bottom: 9px;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, .62);
+}
+.field .req { color: var(--primary-light); }
+
+.field input, .field select {
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 14px;
+  border: 1px solid var(--ink-border);
+  border-radius: var(--r-md);
+  /* Darker than the card it sits in, so a field reads as a well. */
+  background: var(--ink);
+  color: var(--ink-text);
+  font: 400 1rem var(--font-sans);
+  transition: border-color 160ms var(--ease-out), box-shadow 160ms var(--ease-out);
+}
+.field input::placeholder { color: rgba(255,255,255,.5); }
+.field input:hover, .field select:hover { border-color: rgba(255,255,255,.3); }
+.field input:focus-visible, .field select:focus-visible {
+  outline: none;
+  border-color: var(--primary-light);
+  box-shadow: 0 0 0 3px rgba(71,136,234,.3);
+}
+.field select {
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, rgba(255,255,255,.7) 50%),
+                    linear-gradient(135deg, rgba(255,255,255,.7) 50%, transparent 50%);
+  background-position: calc(100% - 20px) 21px, calc(100% - 14px) 21px;
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
+  padding-right: 40px;
+}
+.field select option { background: var(--ink); color: var(--ink-text); }
+
+.field input[aria-invalid="true"], .field select[aria-invalid="true"] { border-color: #FF8A8A; }
+.field-error {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: #FF8A8A;
+  min-height: 0;
+}
+
+.form-foot { margin-top: 28px; }
+.btn-block { width: 100%; }
+.form-note {
+  margin-top: 14px;
+  text-align: center;
+  font-size: 0.8125rem;
+  color: var(--ink-text-secondary);
+}
+
+.form-success {
+  padding: 32px;
+  border: 1px solid var(--primary-light);
+  border-radius: var(--r-lg);
+  background: var(--ink-raised);
+}
+.form-success h3 { margin-bottom: 10px; }
+
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+
+.site-footer { padding-block: 64px 40px; background: var(--bg-default); border-top: 1px solid var(--divider); }
+
+.footer-grid { display: grid; gap: 40px; }
+@media (min-width: 860px) {
+  .footer-grid { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr) minmax(0, 1fr); gap: 56px; }
+}
+
+.footer-brand { max-width: 42ch; }
+.footer-mark { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+.footer-mark img { display: block; height: 30px; width: auto; }
+/* "for Business" is a qualifier on the mark, so it is set lighter than the
+   logotype rather than competing with it. */
+.footer-mark span { font-size: 1.0625rem; font-weight: 500; color: var(--text-secondary); }
+.footer-blurb { font-size: 0.9375rem; line-height: 1.65; color: var(--text-secondary); }
+
+.footer-h {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  margin-bottom: 18px;
+}
+/* A column, not a wrapped row: these are a list of audiences, and reading down
+   them is the point. */
+.footer-list { display: flex; flex-direction: column; gap: 12px; }
+.footer-list li { font-size: 0.9375rem; line-height: 1.6; color: var(--text-secondary); }
+.footer-list a { display: inline-block; padding-block: 3px; }
+.footer-list a { color: var(--primary-main); text-decoration: none; font-weight: 500; }
+.footer-list a:hover { text-decoration: underline; }
+.footer-list .arr { display: inline-block; transition: transform 160ms var(--ease-out); }
+.footer-list a:hover .arr { transform: translateX(3px); }
+
+.footer-bottom {
+  margin-top: 44px;
+  padding-top: 26px;
+  border-top: 1px solid var(--divider);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 24px;
+  justify-content: space-between;
+}
+.footer-bottom p { font-size: 0.8125rem; color: var(--text-secondary); }
+.footer-bottom a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--divider-strong); }
+.footer-bottom a:hover { color: var(--primary-main); border-bottom-color: var(--primary-main); }
+
+/* ==========================================================================
+   Motion — reveals enhance an already-visible default, never gate content
+   ========================================================================== */
+
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 620ms var(--ease-out), transform 620ms var(--ease-out);
+  }
+  .reveal.is-in { opacity: 1; transform: none; }
+  .reveal-stagger > * {
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 560ms var(--ease-out), transform 560ms var(--ease-out);
+  }
+  .reveal-stagger.is-in > * { opacity: 1; transform: none; }
+  .reveal-stagger.is-in > *:nth-child(2) { transition-delay: 70ms; }
+  .reveal-stagger.is-in > *:nth-child(3) { transition-delay: 140ms; }
+  .reveal-stagger.is-in > *:nth-child(4) { transition-delay: 210ms; }
+}
+
+/* No JS, or reduced motion: everything is visible by default */
+html:not(.js) .reveal,
+html:not(.js) .reveal-stagger > * { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media print {
+  .site-header, .drawer, .drawer-backdrop, .hamburger { display: none !important; }
+  body { padding-top: 0; }
+  .s-terminal { background: #fff; color: #000; }
+}
+
+/* ==========================================================================
+   Mobile corner radius
+   These components set a literal radius lower down the sheet, and a media
+   query carries no extra specificity, so this override has to come last.
+   ========================================================================== */
+@media (max-width: 767px) {
+  :root { --r-panel: 16px; --r-xl: 16px; }
+  .switcher,
+  .switch-card,
+  .deck-card { border-radius: 16px; }
+}
+
+/* The trigger carries no bottom padding because on desktop the body always
+   follows it and supplies the space. Below 960px a closed card hides its body
+   outright, so nothing did, and the summary sat flush against the card edge.
+   Measured 1px there against 27px at the top. */
+@media (max-width: 959px) {
+  .deck-card[data-state="resting"] .deck-trigger { padding-bottom: 26px; }
+}
