@@ -1978,7 +1978,7 @@ body { padding-top: var(--header-h); }
 .proof-tile:nth-child(even) { transform: rotate(4deg); }
 .proof-tile:hover { opacity: .85; }
 /* Selection is carried by three things at once, not by colour alone: the tile
-   straightens and grows, its face gains a brand border, and it comes forward. */
+   straightens and grows, its face gains a brand ring, and it comes forward. */
 .proof-tile[aria-selected="true"] {
   z-index: 2;
   opacity: 1;
@@ -1986,29 +1986,35 @@ body { padding-top: var(--header-h); }
 }
 .proof-tile:focus-visible { outline: 2px solid var(--primary-main); outline-offset: 4px; border-radius: var(--r-lg); }
 
+/* Each tile is a light gray square with a gray mark. Only the selected tile
+   takes colour, and always the one site brand colour, so the row reads as one
+   set rather than five competing brands. --tile-bg is reused by marks that
+   knock a shape out of themselves. */
 .tile-face {
+  --tile-bg: #EFF1F4;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
   height: 100%;
   border-radius: var(--r-lg);
-  background: var(--bg-paper);
+  background: var(--tile-bg);
   border: 1px solid var(--divider);
   box-shadow: var(--shadow-2);
   color: var(--text-secondary);
-  transition: border-color 200ms var(--ease-out), color 200ms var(--ease-out), box-shadow 200ms var(--ease-out);
+  transition: color 200ms var(--ease-out), box-shadow 200ms var(--ease-out);
 }
 .tile-mark { width: 27px; height: 27px; }
 @media (min-width: 560px) {
   .proof-tile { width: 84px; height: 84px; }
   .proof-tile + .proof-tile { margin-left: -6px; }
-  .tile-mark { width: 38px; height: 38px; }
+  .tile-mark { width: 40px; height: 40px; }
 }
+/* The selected tile's mark and ring take the brand colour; the ring is
+   separated from the face by a gap in the page colour. */
 .proof-tile[aria-selected="true"] .tile-face {
-  border-color: var(--primary-main);
   color: var(--primary-main);
-  box-shadow: var(--shadow-4);
+  box-shadow: 0 0 0 3px var(--bg-paper), 0 0 0 5px var(--primary-main), var(--shadow-4);
 }
 
 /* Shows the rotation is running and how far through it is. Same mechanic and
@@ -2370,6 +2376,11 @@ body { padding-top: var(--header-h); }
    11 · Get started — terminal weight, ink ground
    ========================================================================== */
 
+/* The global site footer (near-black) follows this section directly, so the
+   ask is set on the same black rather than the page's navy ink. Redefining
+   the ink tokens here re-grounds the card and the field wells with it. */
+.s-terminal { --ink: #121212; --ink-raised: #1C1C1E; padding-bottom: 0; }
+
 .s-terminal h2, .s-terminal h3 { color: var(--ink-text); }
 .s-terminal .t-lead, .s-terminal .t-body, .s-terminal .t-sm { color: var(--ink-text-secondary); }
 
@@ -2475,56 +2486,54 @@ body { padding-top: var(--header-h); }
 }
 .form-success h3 { margin-bottom: 10px; }
 
-
-/* ==========================================================================
-   Footer
-   ========================================================================== */
-
-.site-footer { padding-block: 64px 40px; background: var(--bg-default); border-top: 1px solid var(--divider); }
-
-.footer-grid { display: grid; gap: 40px; }
-@media (min-width: 860px) {
-  .footer-grid { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr) minmax(0, 1fr); gap: 56px; }
+/* Last row of the ask: the other audiences and the insights link. The rule
+   sits on an inner element so it starts and ends on the content edges, the
+   same edges as the intro copy and the form card above. The label stacks over
+   the audiences, and the link sits on the audiences' line at the right edge. */
+.terminal-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px 40px;
+  margin-top: 64px;
+  padding-block: 32px 48px;
+  border-top: 1px solid var(--ink-border);
 }
-
-.footer-brand { max-width: 42ch; }
-.footer-mark { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
-.footer-mark img { display: block; height: 30px; width: auto; }
-/* "for Business" is a qualifier on the mark, so it is set lighter than the
-   logotype rather than competing with it. */
-.footer-mark span { font-size: 1.0625rem; font-weight: 500; color: var(--text-secondary); }
-.footer-blurb { font-size: 0.9375rem; line-height: 1.65; color: var(--text-secondary); }
-
-.footer-h {
+.terminal-foot-h {
+  margin-bottom: 12px;
   font-size: 0.6875rem;
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--text-primary);
-  margin-bottom: 18px;
+  color: var(--ink-text-secondary);
 }
-/* A column, not a wrapped row: these are a list of audiences, and reading down
-   them is the point. */
-.footer-list { display: flex; flex-direction: column; gap: 12px; }
-.footer-list li { font-size: 0.9375rem; line-height: 1.6; color: var(--text-secondary); }
-.footer-list a { display: inline-block; padding-block: 3px; }
-.footer-list a { color: var(--primary-main); text-decoration: none; font-weight: 500; }
-.footer-list a:hover { text-decoration: underline; }
-.footer-list .arr { display: inline-block; transition: transform 160ms var(--ease-out); }
-.footer-list a:hover .arr { transform: translateX(3px); }
+/* Stacked on narrow screens; one dotted line once all four fit, where a
+   wrapped line would leave separators dangling at line starts. */
+.terminal-foot-list { display: flex; flex-direction: column; gap: 8px; }
+.terminal-foot-list li { font-size: 0.9375rem; line-height: 1.5; color: var(--ink-text); }
+@media (min-width: 1000px) {
+  .terminal-foot-list { flex-direction: row; gap: 0; }
+  .terminal-foot-list li + li::before {
+    content: "\00B7";
+    margin-inline: 14px;
+    color: rgba(255, 255, 255, .4);
+  }
+}
+.terminal-foot-link {
+  flex: none;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  font-weight: 500;
+  color: var(--primary-light);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.terminal-foot-link:hover { text-decoration: underline; }
+.terminal-foot-link:focus-visible { outline: 2px solid var(--primary-light); outline-offset: 3px; border-radius: 2px; }
+.terminal-foot-link .arr { display: inline-block; transition: transform 160ms var(--ease-out); }
+.terminal-foot-link:hover .arr { transform: translateX(3px); }
 
-.footer-bottom {
-  margin-top: 44px;
-  padding-top: 26px;
-  border-top: 1px solid var(--divider);
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px 24px;
-  justify-content: space-between;
-}
-.footer-bottom p { font-size: 0.8125rem; color: var(--text-secondary); }
-.footer-bottom a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--divider-strong); }
-.footer-bottom a:hover { color: var(--primary-main); border-bottom-color: var(--primary-main); }
 
 /* ==========================================================================
    Motion — reveals enhance an already-visible default, never gate content

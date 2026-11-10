@@ -1,0 +1,30 @@
+/* Review-only control for switching between page versions. Shared by every
+   version so it looks and sits the same on each. Remove before launch. */
+.version-switch {
+  position: fixed;
+  left: 16px;
+  bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+  z-index: 200; /* above the sticky header, below the mobile drawer and modals */
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 3px;
+  border-radius: 999px;
+  background: rgba(18, 18, 18, .86);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, .22);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  font: 600 11px/1 'Poppins', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  letter-spacing: .04em;
+}
+.version-switch a {
+  display: block;
+  padding: 6px 10px;
+  border-radius: 999px;
+  color: rgba(255, 255, 255, .7);
+  text-decoration: none;
+  transition: color 150ms ease, background-color 150ms ease;
+}
+.version-switch a:hover { color: #fff; }
+.version-switch a[aria-current="page"] { background: #fff; color: #121212; }
+.version-switch a:focus-visible { outline: 2px solid #4788EA; outline-offset: 2px; }
