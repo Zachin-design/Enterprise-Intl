@@ -110,8 +110,15 @@ body {
   font: 400 16px/1.6 var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
 }
+
+/* iOS Safari ignores overflow-x on body alone, so lock both. clip keeps
+   neither element from becoming a scroll container. */
+html, body { overflow-x: hidden; max-width: 100%; }
+@supports (overflow-x: clip) { html, body { overflow-x: clip; } }
+/* A second wall inside the page, since iOS can still pan the root. */
+main { overflow-x: hidden; }
+@supports (overflow-x: clip) { main { overflow-x: clip; } }
 
 h1, h2, h3, h4, p, ul, ol, dl, dd, figure, blockquote { margin: 0; }
 ul, ol { padding: 0; list-style: none; }
@@ -1079,9 +1086,16 @@ body { padding-top: var(--header-h); }
 @media (min-width: 768px) { .trust-title { margin-bottom: 36px; } }
 
 /* --- The marquee: one track of two-logo columns --- */
+/* The band clips too: Safari can let a masked, animated track escape the
+   marquee's own clip and widen the page. */
+.trust { overflow: hidden; }
 .logo-marquee {
+  position: relative;
   width: 100%;
+  max-width: 100%;
   overflow: hidden;
+  contain: paint;
+  transform: translateZ(0);
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
           mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
 }
@@ -1119,13 +1133,16 @@ body { padding-top: var(--header-h); }
   .logo-card img { max-height: 36px; }
 }
 
-/* Hovering the wall holds it still, so a logo can be read. */
-.logo-marquee:hover .logo-track { animation-play-state: paused; }
+/* Hovering the wall holds it still, so a logo can be read. Mouse devices
+   only: on touch screens a tap leaves :hover stuck and froze the wall. */
+@media (hover: hover) and (pointer: fine) {
+  .logo-marquee:hover .logo-track { animation-play-state: paused; }
+}
 
-/* No motion: drop the loop and let the wall scroll by hand instead. */
+/* No motion: the wall stands still. It stays clipped, so it never becomes a
+   sideways swipe area on phones. */
 @media (prefers-reduced-motion: reduce) {
   .logo-track { animation: none; }
-  .logo-marquee { overflow-x: auto; }
 }
 
 /* ==========================================================================
@@ -2041,7 +2058,11 @@ body { padding-top: var(--header-h); }
 @media (min-width: 640px) { .cs-track { grid-auto-columns: calc((100% - 20px) / 2); gap: 20px; } }
 @media (min-width: 1024px) { .cs-track { grid-auto-columns: calc((100% - 48px) / 3); gap: 24px; } }
 
-.cs-card { scroll-snap-align: start; display: flex; }
+/* position: relative anchors each card's screen-reader label inside the
+   scroller. Without it Safari sizes the page to the off-screen cards' labels,
+   which made the whole page swipe sideways on iPhone. */
+.cs-scroller { position: relative; }
+.cs-card { position: relative; scroll-snap-align: start; display: flex; }
 .cs-link {
   display: flex;
   flex-direction: column;
